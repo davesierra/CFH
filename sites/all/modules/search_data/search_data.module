@@ -1,0 +1,91 @@
+<?php
+// $Id$
+/**
+* @file
+* Provides a "profile" node type.
+*/
+
+                      function search_data_menu() {
+                      
+                       $items['search_data'] = array(
+	                   'title' => 'Search',
+                       'page callback' => 'search_data_form',
+                       'page arguments' => array('search_data_form'),
+                       'access arguments' => array('access search_data details'),
+                       'access' => array('anonymous user')
+	                   );
+					   		   
+	                  
+					  
+					  
+                       return $items;	
+                      }
+					
+					function search_data_init() {
+					//drupal_add_js(drupal_get_path('module', 'search_data') .'/pay.js');
+					}  
+					  
+					function search_data_perm() {
+					   return array('access search_data details');
+					}
+					  
+				    function search_data_form_alter(&$form, $form_state, $form_id){  
+					
+					if ($form_id == 'page_node_form') { 
+						 // global $user;
+						// echo "<PRE>";
+						// print_r($form);
+						     	//unset($form['menu']);
+								unset($form['revision_information']);
+								unset($form['comment_settings']);
+							    unset($form['author']);
+								unset($form['attachments']);
+						
+						 } 
+					
+					}				  
+					
+					
+					
+					
+				
+					
+					// starts search_data_form
+					
+					function search_data_form() {
+					
+					
+					
+				     return theme('search_data_form_page');
+
+					}
+					
+					//
+					
+					
+					
+					
+function search_data_theme() {
+	return array(
+		'search_data_form_page' => array(
+        'template' => 'search_data',
+      	),
+		
+	);
+} 
+	
+	
+	
+					
+function template_preprocess_search_data_form_page(&$variables)
+{ 
+ global $user; 
+ $variables['template_files'][] = 'search_data';  
+ $variables[name]='Jon Doe';
+ //$variables[sampleform]=drupal_get_form('upload_image_form');
+ //echo "in the function";
+}
+					
+
+
+?>

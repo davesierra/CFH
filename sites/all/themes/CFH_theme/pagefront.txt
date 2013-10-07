@@ -1,0 +1,528 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<!--<title><?php //print $head_title ?></title>-->
+	<title>ActionCasting</title>
+
+        <?php print $head ?>
+        <?php print $styles ?>
+        <?php //print $scripts ?>
+        <?php print $closure ?>
+       
+
+	<!-- Meta Tags -->
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="description" content="ActionCasting" /> 
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="<?php //print $base_path . $directory; ?>/favicon.ico" type="image/x-icon" />
+	<!-- CSS -->
+	<link rel="stylesheet" type="text/css" media="screen" href="<?php print $base_path . $directory; ?>/style.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="<?php print $base_path . $directory; ?>/css/test.css"/>
+	<link rel="image_src" href="http://122.166.23.38/dev3/actioncasting/sites/all/themes/actioncasting/images/logo.gif" />
+	<script src="<?php print $base_path . $directory; ?>/Scripts/home-pg-4.js" type="text/javascript"></script>
+	<script src="<?php print $base_path . $directory; ?>/Scripts/jquery.js" type="text/javascript"></script>	
+	<script src="<?php print $base_path . $directory; ?>/Scripts/jquery.cycle.js" type="text/javascript"></script>
+	<script src="<?php print $base_path . $directory; ?>/Scripts/jqueryJs.js" type="text/javascript"></script>	 
+	
+    <script type="text/javascript">
+	$(function() {
+		var zIndexNumber = 9999;
+		$('div').each(function() {
+			$(this).css('zIndex', zIndexNumber);
+			zIndexNumber -= 10;
+		});
+	});
+		
+	function twit_click_p() 
+	{
+	   var twitCont   = location.href; 
+	   window.open('http://twitter.com/home?status='+twitCont,'sharer','toolbar=0,status=0,width=626,height=436');
+	   return false;
+	}
+	
+	function fbs_click(meta,type,auth) 
+	{
+	 var t=document.title; 
+	 var u=location.href;
+	 window.open('http://www.facebook.com/sharer.php?u='+u+'&t='+t,'sharer','toolbar=0,status=0,width=626,height=440');
+	 return false;
+	}
+	
+	function myspace_click_p()
+	{
+	 var u = location.href;
+	 var t=document.title;
+	 var imgstart = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+	 var c="Test value";
+	 window.open('http://www.myspace.com/Modules/PostTo/Pages/?l=3&u='+encodeURIComponent(u)+'&t='+encodeURIComponent(t)+'&c='+encodeURIComponent(c),'ptm','toolbar=0,status=0,width=626,height=436');
+	 return false;
+	}
+
+
+	</script>
+    <?php
+		  if(isset($_GET['destination'])) {
+	?>	    
+		<script type="text/javascript">
+			       $(function() {
+				   toggle_div('#headerDropdown',500);
+				   });
+		</script>
+	<?php
+		    }
+    ?>
+
+	<!--[if IE 6]>
+	<SCRIPT src="<?php print $base_path . $directory; ?>/Scripts/DD_belatedPNG_0.0.7a-min.js"></SCRIPT>
+	<SCRIPT>
+		  DD_belatedPNG.fix('img, .black_box,.news_listbox');
+	</SCRIPT>
+	<![endif]-->
+</head>
+
+
+
+<body onload="load('table-content',3000,'<?php print $base_path . $directory; ?>/images/')">
+
+<div id="main_warp_outer">
+	<!--Begin: Main Warp-->
+	<div id="main_warp">
+		<!--Begin: Header Section-->
+        <div id="header">
+        	<div class="logo"><a href="<?php print $base_path; ?>">Action Casting</a></div>
+            <div id="header_right">
+            	<div class="head_top">
+                	<div class="date"><?php echo date("l, M j, Y"); ?></div>					
+                    <div class="search">
+					
+						<?php print $search_block; ?>
+						
+						<!--
+						<form action="<?php //print url('search/node/'); ?>" accept-charset="UTF-8" method="post" id="search-theme-form" name="prosearch">
+						<div id="search" class="container-inline">
+						<div id="edit-search-theme-form-1-wrapper">
+						<label for="edit-search-theme-form-1"></label>		
+						<input type="text" class="search_field" name="keys" id="edit-search-theme-form-1" value="Search Site" onclick="document.prosearch.keys.value ='';"  OnBlur="document.prosearch.keys.value ='Search Site';" />
+						<input name="Submit" type="submit"  class="go_button" value="GO"/>
+						</div>
+						<input type="hidden" value="<?php //print drupal_get_token('search_form'); ?>" name="form_token" />
+						<input type="hidden" value="search_form" id="edit-search-form" name="form_id" />
+						<input type="hidden" name="type[<?php //print $type; ?>]" id="edit-type-<?php ///print $type; ?>" value="<?php //print $type; ?>" />		
+						</div>
+						</form>
+						-->
+						<!--
+                		<input name="textfield" type="text"  class="search_field" id="textfield" onfocus="this.value='';" onblur="if(!/\S/.test(this.value))this.value=this.defaultValue" value="Search Site" />
+                        <input name="Submit" type="submit"  class="go_button" value="GO"/>
+						-->
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="head_bottom">
+                <?php
+				// print the currently logged user role and user name 
+				global $user;
+				if($user->uid) {
+					$role_name = get_role_name($user);
+				?>
+	          	<div class="logged_in_as">
+    	        	You are logged in as <?php echo ucfirst($role_name);?> (Name : <?php echo ucfirst($user->name);?>).
+        	    </div>
+                <?php 
+				}
+				?>
+                	<!--Begin: Main Navigation-->
+                	<div id="main_navigation">
+					<?php //print $header_menu; ?>
+						<?php 
+						global $user;
+						if($user->uid>0){
+							print $header_menu;
+						}else{
+						?>
+						<ul>
+                        	<li><a href="<?php print $base_path; ?>">HOME</a></li>
+                            <li><a href="<?php print $base_path; ?>tutorials">TUTORIALS</a></li>
+                            <li><a href="<?php print $base_path; ?>faq">FAQ</a></li>
+                            <li><a href="<?php print $base_path; ?>release_notes">RELEASE NOTES</a></li>
+                            <li style="margin-right:0px;"><a href="<?php print $base_path; ?>contact">CONTACT US</a></li>
+                        </ul>
+                    	<?php }?>
+                    </div>
+                    <!--End: Main Navigation-->
+                    <div class="login_box">
+                    	<div class="login">
+                                    <a href="#" onclick="toggle_div('#headerDropdown',500)">
+                                    Login <img src="<?php print $base_path . $directory; ?>/images/arrow.gif" alt="login" width="7" height="5" border="0" /> </a>
+                                    	<div id="headerDropdown">
+                                            <form action="<?php echo base_path(); ?>public_profile" accept-charset="UTF-8" method="post" id="user-login-form">
+                                            <h2>Login to Action Casting</h2>
+                                                   <div class="feilds">
+                                                        <input type="text" name="name" id="edit-name-1" maxlength="50" class="login_textfeild" onfocus="this.value='';" onblur="if(!/\S/.test(this.value))this.value=this.defaultValue"  value="Your Username"/>                                                        <input type="password" name="pass" id="edit-pass-1" maxlength="50" class="login_textfeild"  onfocus="this.value='';" onblur="if(!/\S/.test(this.value))this.value=this.defaultValue" value="Your Password"/>
+                                                        <div class="remember_me toleft">
+                                                            <!--<input type="checkbox" name="checkbox" class="styledCheckbox "/>
+                                                      Remember Me--></div>
+                                                        <div class="remember_me toright">
+                                                            <a href="<?php echo base_path(); ?>user/password">Forgot password?</a>
+                                                        </div>
+                                                        <div class="clear"></div>  
+                                                    </div>
+                                                    <div class="loginSubmit" onclick="javascript:document.getElementById('user-login-form').submit();">
+                                                        <input name="op" id="edit-submit-1" type="submit"  value="GO" onclick="javascript:document.getElementById('user-login-form').submit();"/>
+                                                    </div> 
+                                                   <?php //print $login_block; ?> 
+										<input name="form_build_id" id="form-b52320adf9db3c81e80f5931670b974c" value="form-b52320adf9db3c81e80f5931670b974c" type="hidden"/>
+                                        <input name="form_id" id="edit-user-login-block" value="user_login_block" type="hidden">
+                                         </form>
+												<?php //print $login_block; ?>
+                                          </div>
+                      </div>
+                               
+                       
+                        <div class="signup"><a href="<?php print $base_path.'registration' ?>">Sign up</a></div>
+                    </div>
+              </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <!--End: Header Section-->
+        <!--Bgin: Content Section-->
+        <div id="main_content">
+        	<!--Bgin: Content left Section -->
+       	  <div id="content_left">
+           	  <div class="news_slide">
+              		<div class="news_container">
+                	<div  style="position:relative" >
+                		<div id="content-container">
+							<div id="content" class="slidecontent scroll" style="visibility: visible; top: 0pt; left: 0pt; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;">
+                                <table  id="table-content" border="0" cellpadding="0" cellspacing="0">
+                                    <tbody>
+                                        <tr>
+                                            
+                                            	
+                                             <?php
+											 for($i=0;$i<10;$i=$i+2) {
+											 $t=$i;
+											 $u=$t+1;
+                                             $path = $rss->channel['ITEM'][$t]['GUID'];
+											 $path2 = $rss->channel['ITEM'][$u]['GUID'];
+											 $desc = $rss->channel['ITEM'][$t]['DESCRIPTION'];
+											 $desc2 = $rss->channel['ITEM'][$u]['DESCRIPTION'];
+                                             $title = $rss->channel['ITEM'][$t]['TITLE'];
+											 $title2 = $rss->channel['ITEM'][$u]['TITLE'];
+											?>
+                                            <td>
+                                            <div class="our_news" style="position:relative;" > 
+                                            		<div class="news_listbox">
+                                                        <img src="<?php print $base_path . $directory; ?>/images/news_highliter.png" alt="NEWS"  border="0" style="position:absolute; top:0px; left:0px;" />
+                                                        <div class="news_listbox_con">
+                                                            <a href="<?php print $path;  ?>" target="_blank" ><img src="<?php print $base_path . $directory; ?>/images/news_img01.gif" width="324" height="169" border="0" alt="news" /></a> 
+                                                            <div class="description">
+                                                                    <h3><?php print $title; ?></h3>
+                                                                   <?php print substr($desc,0,120); ?>                                                            </div>
+                                                        </div>
+                                                        <div class="view_morebtn view_bg_left">
+                                                            <a href="<?php print $path;  ?>" target="_blank">view more</a>                                                        </div>
+                                                    </div>
+                    								<div class="news_listbox_space"></div>
+                                                    <div class="news_listbox01">
+                                                        <img src="<?php print $base_path . $directory; ?>/images/news_highliter01.png" alt="NEWS"  border="0" style="position:absolute; top:0px; left:0px;" />
+                                                        <div class="news_listbox_con">
+                                                            <a href="<?php print $path2;  ?>" target="_blank" ><img src="<?php print $base_path . $directory; ?>/images/news_img02.gif" width="324" height="169" border="0" alt="news" /></a> 
+                                                            <div class="description">
+                                                                  <h3><?php print $title2; ?></h3>
+                                                                   <?php print substr($desc2,0,120); ?>                                                            </div>
+                                                        </div>
+                                                        <div class="view_morebtn view_bg_right toright">
+                                                            <a href="<?php print $path;  ?>" target="_blank">view more</a>                                                        </div>
+                                                    </div>
+                                              		<div class="clear"></div>
+                                            	</div>                                            
+                                           	</td>
+                                            <?php	  
+												  
+												  
+                                             }
+											 
+											 
+											 ?>   
+                                                
+                                                
+                                                
+                                                
+                                                
+                                                
+                                                
+                                            					
+                                          </tr>
+                                      </tbody>
+                                  </table>
+							</div>
+						</div>
+                        <div id="slide-links">
+							<div class="left"></div>
+								<div id="lnks" class="left" style="-moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;">
+					<img src="<?php print $base_path . $directory; ?>/images/slide-on.gif" alt="1" name="slide1"  border="0" id="slide1" style="cursor: pointer;" onclick="slide(1,'<?php print $base_path . $directory; ?>/images/'); return false" />
+					<img src="<?php print $base_path . $directory; ?>/images/slide-off.gif" alt="2" name="slide2"   border="0" id="slide2" style="cursor: pointer;" onclick="slide(2,'<?php print $base_path . $directory; ?>/images/'); return false" />
+					<img src="<?php print $base_path . $directory; ?>/images/slide-off.gif" alt="3" name="slide3"  border="0" id="slide3" style="cursor: pointer;" onclick="slide(3,'<?php print $base_path . $directory; ?>/images/'); return false" />
+					<img src="<?php print $base_path . $directory; ?>/images/slide-off.gif" alt="4" name="slide4"  border="0" id="slide4" style="cursor: pointer;" onclick="slide(4,'<?php print $base_path . $directory; ?>/images/'); return false" />
+					<img src="<?php print $base_path . $directory; ?>/images/slide-off.gif" alt="5" name="slide5"   border="0" id="slide5" style="cursor: pointer;" onclick="slide(5,'<?php print $base_path . $directory; ?>/images/'); return false" />								</div>
+								<div class="left"></div>
+								<br clear="all"/>
+							</div>
+                        <div class="clear"></div>
+                     </div>
+                </div>
+                <div class="clear"></div>
+                <div class="view_all toright"><a href="<?php print $rss->channel['LINK']; ?>" target="_blank" >View All</a></div>		
+              </div>
+              <div id="casting_sections">
+           		<div class="casting_sections_listdiv">
+                      <div class="casting_sections_listdiv_head">
+                      		<img src="<?php print $base_path . $directory; ?>/images/rep_heading.jpg" alt="Representation" width="152" height="21" />
+                      </div>
+                      <a href="<?php print $base_path; ?>representation"><img src="<?php print $base_path . $directory; ?>/images/rep_user.jpg" alt="Representation" width="212" height="238" border="0" /></a>
+                      <div class="black_box"> Gerard Butler</div>
+                </div>
+                <div class="casting_sections_listdiv">
+                      <div class="casting_sections_listdiv_head">
+                      		<img src="<?php print $base_path . $directory; ?>/images/dir_heading.jpg" alt="Representation" width="205" height="21" />                      
+                      </div>
+                      <a href="<?php print $base_path; ?>directors"><img src="<?php print $base_path . $directory; ?>/images/dir_user.jpg" alt="Representation" width="212" height="238" border="0" /></a>
+                      <div class="black_box"> Ben Browder</div>
+                </div>
+                <div class="casting_sections_listdiv">
+                      <div class="casting_sections_listdiv_head">
+                      		<img src="<?php print $base_path . $directory; ?>/images/talent_heading.jpg" alt="Representation" width="64" height="21" />                      
+                      </div>
+                      <a href="<?php print $base_path; ?>talent"><img src="<?php print $base_path . $directory; ?>/images/talent_user.jpg" alt="Representation" width="212" height="238" border="0" /></a>
+                  <div class="black_box"> Bret Harrison</div>
+                </div>
+              </div>
+              <div class="acting_class_adbanner">
+              <div class="hiden" style="display:none"></div>
+              		<a href="<?php echo base_path();?>courses">Acting Classes Workshops &amp; Showcases</a>
+              </div>
+              <div class="search_talent_adbanner">
+              <div class="hiden" style="display:none"></div>
+              		<a href="<?php print $base_path; ?>talent/talent_scout/advanced_search">Seach Talent</a>
+              </div>
+              <div class="clear"></div>
+          </div>
+          <!--End: Content left Section -->
+          
+          <!--Begin: Content right Section -->
+          <div id="content_right">
+          		<div class="our_succ_story">  
+                  <div id="mijloc-1">
+                                <div id="port1stpage">
+                                    <!-- Image -->
+                                    <div id='port1st-descriere'>
+                                        <div id='img_home'>
+                                          	<div class="slide">
+                                            	<div class="affli_img">
+                                                   <div class="list_1">
+                                                    <div class="our_succ_story_con"> 
+                                                         Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno 
+                                                         <div class="author">Peter john
+                                                         <p><span>Actor</span></p>
+                                                         </div>
+                                                         <div class="viewall"><a href="#">View All</a></div>
+                                                         <div class="clear"></div>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                                <div class="clear"></div>
+                                          	</div>
+                                   	  <div class="slide">
+                                            	<div class="affli_img">
+                                                   <div class="list_1">
+                                                    <div class="our_succ_story_con"> 
+                                                         Al contrario del pensamiento popular, el texto de Lorem Ipsum no es simplemente texto aleatorio. Tiene sus raices en una pieza
+                                                         <div class="author">Rocky
+                                                         <p><span>Actor</span></p>
+                                                         </div>
+                                                         <div class="viewall"><a href="#">View All</a></div>
+                                                         <div class="clear"></div>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                                <div class="clear"></div>
+                                          	</div>
+                                       	 
+                                       	  <div class="slide">
+                                            	<div class="affli_img">
+                                                   <div class="list_1">
+                                                    <div class="our_succ_story_con"> 
+                                                         Sica de la literatura del Latin,Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto Ipsum
+                                                         <div class="author">Peter john
+                                                         <p><span>Actor</span></p>
+                                                         </div>
+                                                         <div class="viewall"><a href="#">View All</a></div>
+                                                         <div class="clear"></div>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                                <div class="clear"></div>
+                                          	</div>
+                                            
+                                            <div class="slide">
+                                            	<div class="affli_img">
+                                                   <div class="list_1">
+                                                    <div class="our_succ_story_con"> 
+                                                         Contrario del pensamiento popular, el texto de Lorem Ipsum no es simplemente texto aleatorio. Tiene sus raices en una pieza
+                                                         <div class="author">Brad Pit
+                                                         <p><span>Actor</span></p>
+                                                         </div>
+                                                         <div class="viewall"><a href="#">View All</a></div>
+                                                         <div class="clear"></div>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                                <div class="clear"></div>
+                                          	</div>
+                                            <div class="slide">
+                                            	<div class="affli_img">
+                                                   <div class="list_1">
+                                                    <div class="our_succ_story_con"> 
+                                                         Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno
+                                                         <div class="author">Wind Smith
+                                                         <p><span>Actor</span></p>
+                                                         </div>
+                                                         <div class="viewall"><a href="#">View All</a></div>
+                                                         <div class="clear"></div>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                                <div class="clear"></div>
+                                          	</div>
+                                   	  </div>
+                                    </div>
+                                    
+                                    <!-- Image -->
+                                    <!-- Content -->
+                                    <div id='port1st-lucrari'>
+                                        <div class='nav'></div> 
+                                    
+                                   	  <script type='text/javascript'>
+                                            //<![CDATA[
+                                             $(document).ready( function() {
+                                                $('#img_home').cycle({     
+                                                
+                                                pager:  '.nav',
+                                                pagerAnchorBuilder: function(i) {
+                                                    var list_element = "<span><a href='#'></a></span>";
+                                                        return list_element;
+                                                     }
+                                                });      
+                                                   
+                                                $('#img_home')
+                                                .cycle({  
+                                                fx:    'fade',
+                                                //easing: 'bounceout', 
+                                                delay:  5000, 
+                                                timeout: 5000,
+                                                next     : '.next', 
+                                                prev     : '.prev', 
+                                                pager:  '.nav',
+                                                pagerAnchorBuilder: function(i) {
+                                                    return $('.nav span:eq('+i+')');
+                                                }
+                                                                
+                                                });
+                                                });
+                                           //]]>
+                                        </script>
+                                    </div>
+                                    <!-- Content -->
+                                </div>
+                        </div>
+                        </div>
+                <div class="clear"></div>
+                <div class="side_down_adbanner">
+                <div class="hiden" style="display:none"></div>
+                	<a href="<?php print $base_path; ?>free_sides">Sides free downloadig</a>
+                </div>
+                <div class="find_photographer_adbanner">
+                <div class="hiden"></div>
+                	<a href="<?php print $base_path; ?>resource/directories/photographers">Find a pro photographer</a>
+                </div>
+                <div class="need_help_adbanner">
+                <div class="hiden" style="display:none"></div>
+                	<a href="<?php print $base_path; ?>tutorials">Need Help Getting Started</a>
+                </div>
+                 <div class="reel_gallery">
+                 <div class="hiden" style="display:none"></div>
+                	<a href="#">Reel Gallery</a>
+                </div>
+          </div>
+          <!--End: Content right Section -->
+            <div class="clear"></div>
+        </div>
+        <!--End: Content Section-->
+    <div class="clear"></div>    
+	</div>
+    <!--End: Main Warp-->
+    <!--Begin: Footer Main Warp-->
+    <div id="footer_main_warp">
+    	<div class="footer_logo"><a href="<?php print $base_url; ?>" class="hide">Action Casting</a></div>
+        <div class="footer_links">
+            	<a href="<?php print $base_path; ?>resource/directories/Casting_Directors">Casting Directors</a>
+                <a href="<?php print $base_path; ?>resource/directories/photographers">Photographers</a>
+                <a href="<?php print $base_path; ?>resource/directories/Casting_Directors">Directors</a>
+                <a href="#">Reel Gallery</a>
+                <a href="<?php print $base_path; ?>links">Links</a>
+                <a href="<?php print $base_path; ?>resource/directories/agents">Agents</a>
+                <a href="<?php print $base_path; ?>resource/directories/acting_teachers">Acting Coaches</a>
+                <!-- 
+                <?php global $user; 
+				if($user->uid) {
+				?>
+	                <a href="<?php print $base_path; ?>download_mailing">Mailing Labels</a>
+                 <?php } else {
+				 ?>
+                 	<a href="<?php print $base_path; ?>user/login?destination=download_mailing">Mailing Labels</a>
+                 <?php
+				 }
+				 ?>
+                -->
+                <a href="<?php print $base_path;  ?>tutorials">Video Tutorials</a> 
+                <a href="<?php print $base_path;  ?>talent/talent_scout/quick_search">Actors</a>
+                <a href="#">Demo Reels</a>
+                <a href="<?php echo base_path();?>free_sides">Sides</a>
+                <a href="<?php print $base_path;  ?>faq">FAQs</a> 
+        </div>
+        <div class="tell_a_friend">
+        	<h2>Tell A Friend</h2>
+            <div class="tellafriend_icons">
+            	<div class="tellafriend_icon">
+                	<a onclick="return fbs_click('2','facebook','author');"><img src="<?php print $base_path . $directory; ?>/images/facebook_icon.gif" alt="Facebook" width="23" height="24" border="0" /></a>
+                </div>
+                <div class="tellafriend_icon">
+                	<a onclick="twit_click_p();"><img src="<?php print $base_path . $directory; ?>/images/twitter_icon.gif" alt="Twitter" width="22" height="24" border="0" /></a>                
+                </div>
+                <div class="tellafriend_icon">
+                	<a onclick="return myspace_click_p();"><img src="<?php print $base_path . $directory; ?>/images/my_soace_icon.gif" alt="My Space" width="23" height="24" border="0" /></a>                
+                </div>
+                <div class="tellafriend_icon">
+                	<a href="<?php print $base_path; ?>tellafriend"><img src="<?php print $base_path . $directory; ?>/images/send_invite_icon.gif" alt="Invite A Friend" width="23" height="24" border="0" /></a>                
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer_bottom">
+       	  <div class="copyright">
+            	 2009 Copyright <span>actioncating.com</span> - California, P.O. Box 4222, N. Hollywood, CA, 91617, tel. (818) 749 3934, 
+                email: <a href="mailto:admin@actioncasting.com">admin@actioncasting.com</a>
+          </div>
+            <div class="powered">Powered by <a href="http://www.legendfx.com/" target="_blank">Legend FX</a></div>
+            <div class="clear"></div>	
+      </div>
+        <div class="clear"></div>	
+    </div>
+    <!--End: Footer Main Warp-->
+</div>
+</body>
+
+</html>

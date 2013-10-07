@@ -1,0 +1,5 @@
+; $Id$
+name = add_links
+description = It is for admin to edit payrent online link.
+package = Custom Project
+core = 6.x

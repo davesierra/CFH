@@ -1,0 +1,91 @@
+<?php
+// $Id$
+/**
+* @file
+* Provides a "profile" node type.
+*/
+
+                      function front_end_menu_menu() {
+                      
+                       $items['front_end_menu.html'] = array(
+	                   'title' => 'Side Bar Menu Management',
+                       'page callback' => 'front_end_menu_form',
+                       'page arguments' => array('front_end_menu_form'),
+                       'access arguments' => array('access front_end_menu details'),
+                       'access' => array('anonymous user')
+	                   );
+					   		   
+	                  
+					  
+					  
+                       return $items;	
+                      }
+					
+					function front_end_menu_init() {
+					//drupal_add_js(drupal_get_path('module', 'front_end_menu') .'/pay.js');
+					}  
+					  
+					function front_end_menu_perm() {
+					   return array('access front_end_menu details');
+					}
+					  
+				    function front_end_menu_form_alter(&$form, $form_state, $form_id){  
+					
+					if ($form_id == 'page_node_form') { 
+						 // global $user;
+						// echo "<PRE>";
+						// print_r($form);
+						     	//unset($form['menu']);
+							//	unset($form['revision_information']);
+							//	unset($form['comment_settings']);
+							 //   unset($form['author']);
+							//	unset($form['attachments']);
+						
+						 } 
+					
+					}				  
+					
+					
+					
+					
+				
+					
+					// starts front_end_menu_form
+					
+					function front_end_menu_form() {
+					
+					
+					
+				     return theme('front_end_menu_form_page');
+
+					}
+					
+					//
+					
+					
+					
+					
+function front_end_menu_theme() {
+	return array(
+		'front_end_menu_form_page' => array(
+        'template' => 'front_end_menu',
+      	),
+		
+	);
+} 
+	
+	
+	
+					
+function template_preprocess_front_end_menu_form_page(&$variables)
+{ 
+ global $user; 
+ $variables['template_files'][] = 'front_end_menu';  
+ $variables[name]='Jon Doe';
+ //$variables[sampleform]=drupal_get_form('upload_image_form');
+ //echo "in the function";
+}
+					
+
+
+?>

@@ -1,0 +1,307 @@
+<?php
+// $Id$
+/**
+* @file
+* Provides a "profile" node type.
+*/
+
+                      function ac_profile_menu() {
+                      
+                       $items['profile1'] = array(
+	                   'title' => 'Profile',
+                       'page callback' => 'drupal_get_form',
+                       'page arguments' => array('profile_form'),
+                       'access arguments' => array('access profile details')
+                       //'access' => array('anonymous user')
+	                   );
+	                   $items['profile1/biography'] = array(
+		                'title' => 'Biography',
+		                'page callback' => 'drupal_get_form',
+		                'page arguments' => array('profile_form'),
+		                'access arguments' => array('access profile details')
+	                   );
+	                   $items['profile1/preview'] = array(
+		               'title' => 'Preview',
+	                   'page callback' => 'drupal_get_form',
+		               'page arguments' => array('profile_form'),
+		               'access arguments' => array('access profile details'),
+					   //'path' => $user_path,
+                      );
+					   $items['profile1/custom_url'] = array(
+		               'title' => 'Custom URL',
+	                   'page callback' => 'drupal_get_form',
+		               'page arguments' => array('profile_form'),
+		               'access arguments' => array('access profile details')
+                      );
+					  
+					  $items['updatepassword'] = array(
+		               //'title' => 'Custom URL',
+	                   'page callback' => 'update_password',
+		               'access arguments' => array('access content')
+                      );
+					  
+					  
+                       return $items;	
+                      }
+					
+					function ac_profile_init() {
+					drupal_add_js(drupal_get_path('module', 'ac_profile') .'/pay.js');
+					}  
+					  
+					function ac_profile_perm() {
+					   return array('access profile details');
+					}
+					  
+					  					  
+					  function update_password(){	
+						$sql = "UPDATE `users` SET `pass`='".md5($_POST['password'])."' WHERE `keys`=".$_POST['keyvalue'];
+						$result = db_query($sql);
+						drupal_goto('');
+					  }
+					  
+					
+					function ac_profile_user($op, &$edit, &$user, $category = NULL) {
+					 		global $user;					
+							if($op == "login"){							
+									drupal_goto('public_profile');	
+								}
+								
+					}
+					
+					
+					function ac_profile_form_alter(&$form, $form_state, $form_id) {
+					//print $form_id;
+					   if ($form_id == 'user_login_block' || $form_id == 'user_login' || $form_id == 'user_login_form') {
+						$form['#action'] = 'public_profile';
+					  }
+					}
+					
+					// starts profile_form
+					
+					function profile_form() {
+					   global $base_url;
+					   global $user;
+							if(arg(1) == "preview") {
+					            $user_path = $base_url."/user/".$user->uid.'/view';
+					            drupal_goto($user_path);
+					         }
+					        else if(arg(1) == "biography") {
+							$abt_me = db_result(db_query("select biography from user_profile where user_id=%d",$user->uid));
+					        $form['about_me'] = array( 
+							                     '#type' => 'textarea', 
+												 '#title' => 'About me',
+												 '#default_value' => $abt_me,
+							  	                     );
+							$form['submit_button'] = array(
+												'#type' => 'submit', 
+												'#value' => t('Save'), 
+												'#submit' => array('save_bio')
+												);						 
+					
+					
+					        }
+					        else if(arg(1) == "custom_url") {
+							global $user;
+							global $base_url;
+							$c_url_chnges=db_result(db_query("select custom_url_changes from user_profile where user_id=%d",$user->uid));
+							$c_url=db_result(db_query("select custom_url from user_profile where user_id=%d",$user->uid));
+							$exploded = explode("/",$c_url);
+							$crl = $exploded[count($exploded)-1];
+					        $form['status1'] = array( 
+							                     '#type' => 'markup', 
+												 '#value' => '<h4>Send family, friends and industry pros a custom link to your public profile. Set your Custom URL below</h4><br />'
+							  	                     );
+							$form['url'] = array( 
+							                     '#type' => 'markup', 
+												 '#value' => '<center><h4 style="color:#0D7EC9; font-weight:bold;">'.$base_url.'/custom/<input type ="text" name="c_url" id="c_url" value="'.$crl.'" /></h4></center><br />',
+												  );
+						if($c_url_chnges == 0) {	
+						    					  
+							$form['submit_button'] = array(
+												'#type' => 'submit', 
+												'#prefix' => '<center>',
+												'#suffix' => '</center>',
+												'#value' => t('Save'), 
+												'#submit' => array('save_url')
+												);
+						}
+						else {            
+						               $custom_urls = db_query("select custom_url from user_profile");
+									   $crls_array = array();
+									   while ($crls = db_fetch_object($custom_urls)) {	 
+									   if($crls->custom_url != ""){ 
+									   $crel1 = explode('/',$crls->custom_url);
+									  // print_r($crel1);
+									   $crls_array[] = $crel1[6];
+									   }
+									   }
+									   $crls_str = implode(',',$crls_array);
+									  // print $crls_str;
+									 $form['crls_str'] = array(
+											 '#type' => 'hidden',
+											 '#name' => 'crls_str',
+											 '#value' => $crls_str
+											  );
+									   
+						               if($_GET['urlpaid'] == 1) {
+						              
+										$url = $base_url.'/custom/'.$_GET['url'];
+					                    $cnt_nums = db_result(db_query("select count(custom_url) from user_profile where custom_url='".$url."'"));
+					
+				                     	if($cnt_nums>0) {
+					                    drupal_set_message("The name, you used is already used. Please choose another one","error");
+					                    }
+					                    else {
+					
+					                    $res = db_query("update user_profile set custom_url='%s' where user_id=%d",$url,$user->uid);
+					                    if($res) {
+					                    drupal_set_message("You set custom url successfully");
+										drupal_goto($base_url."/profile1/custom_url");
+					                    }
+					
+					                    }
+										
+										
+										
+										}
+						                $form['#action'] ='https://www.sandbox.paypal.com/cgi-bin/webscr';
+						                $form['cmd'] = array(
+														 '#type' => 'hidden',
+														 '#name' => 'cmd',
+														 '#value' => '_ext-enter', 
+														  );
+										$form['redirect_cmd'] = array(
+														 '#type' => 'hidden',
+														 '#name' => 'redirect_cmd',
+														 '#value' => '_xclick', 
+														  );
+										$form['business'] = array(
+														 '#type' => 'hidden',
+														 '#name' => 'business',
+														 '#value' => 'arunaa_1256537263_biz@gmail.com', 
+														  );				  
+                                        $form['item_name'] = array(
+														 '#type' => 'hidden',
+														 '#name' => 'item_name',
+														 '#value' => 'customurl', 
+														  );
+										$form['amount'] = array(
+														 '#type' => 'hidden',
+														 '#name' => 'amount',
+														 '#value' => '12', 
+														  );	
+										$form['no_note'] = array(
+														 '#type' => 'hidden',
+														 '#name' => 'no_note',
+														 '#value' => '1', 
+														  );
+										$form['currency_code'] = array(
+														 '#type' => 'hidden',
+														 '#name' => 'currency_code',
+														 '#value' => 'USD', 
+														  );	
+										$form['rm'] = array(
+														 '#type' => 'hidden',
+														 '#name' => 'rm',
+														 '#value' => '2', 
+														  );
+										$form['return'] = array(
+														 '#type' => 'hidden',
+														 '#name' => 'return',
+														 '#value' => $base_url.'/profile1/custom_url?urlpaid=1',  
+														  );
+										$form['cancel_return'] = array(
+														 '#type' => 'hidden',
+														 '#name' => 'cancel_return',
+														 '#value' => $base_url.'/profile1/custom_url',
+														  );
+						
+						                $form['submit_button'] = array(
+												'#type' => 'submit', 
+												'#prefix' => '<center>',
+												'#suffix' => '</center>',
+												'#value' => t('Save'), 
+												'#attributes' => array('onclick' => 'return redirect_url_paypal(this)'),
+												//'#submit' => array('save_url')
+												);
+						
+						
+						
+						
+						}												  						 
+							$form['status2'] = array( 
+							                     '#type' => 'markup', 
+												 '#value' => '<h5>Note: You may set your Custom URL once. Any additional updates require a fee of $12 per change</h5>'
+							  	                     );						 
+							
+					
+					        }
+					return $form;
+					}
+					
+					//
+					
+					function save_url($form, &$form_state) {
+					global $base_url;
+					global $user;
+				    $path_name = $form_state['clicked_button']['#post']['c_url'];
+					//print_r($form_state);
+					$url = $base_url.'/custom/'.$path_name;
+					$cnt_nums = db_result(db_query("select count(custom_url) from user_profile where custom_url='".$url."'"));
+					
+					if($cnt_nums>0) {
+					drupal_set_message("The name, you used is already used. Please choose another one","error");
+					}
+					else {
+					
+					  $res = db_query("update user_profile set custom_url='%s',custom_url_changes='1' where user_id=%d",$url,$user->uid);
+					  if($res) {
+					    drupal_set_message("You set custom url successfully");
+					  }
+					
+					}
+					
+					}
+					
+					function save_bio($form, &$form_state) {
+					global $user;
+					///print_r($form_state['values']['about_me']);exit;
+					$result = db_query("update user_profile set biography='%s' where user_id=%d", $form_state['values']['about_me'], $user->uid);
+					if($result) {
+						drupal_set_message("You saved biography","success");
+						drupal_goto('user/'.$user->uid);
+					}
+					}
+
+function get_display_name($user_name) {
+	if(is_int($user_name)){
+		$uid = $user_name;
+	}
+	else {
+		$query = "select uid from users where name='".$user_name."'";
+		$uid = db_result(db_query($query));
+	}
+	//echo $uid;
+	$userObj = user_load($uid);
+	$roles = $userObj->roles;
+	if(in_array('Actor',$roles)!==FALSE){
+		// the username belongs to 'Actor' role - then get stage name
+		$query = "select stage_name from user_profile where user_id = ".$userObj->uid;
+		$name = db_result(db_query($query));
+		if(trim($name)=="")
+			$name = $userObj->name;
+	}
+	else
+	if(in_array('Agent',$roles)!==FALSE){ //echo "in agent";
+		// the username belongs to 'Agent' role - then get company name
+		$query = "select company_name from user_profile where user_id = ".$userObj->uid;
+		$name = db_result(db_query($query));
+		if(trim($name)=="")
+			$name = $userObj->name;
+	}
+	else {
+		$name = $userObj->name;
+	}
+	return $name;
+}
+?>

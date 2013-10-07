@@ -1,0 +1,2 @@
+<br />
+<b>Warning</b>:  readfile(pdf/tmp/ans__5512.pdf) [<a href='function.readfile'>function.readfile</a>]: failed to open stream: No such file or directory in <b>/var/www/accesscare/testpdf.php</b> on line <b>123</b><br />

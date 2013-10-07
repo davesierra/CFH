@@ -1,0 +1,91 @@
+<?php
+// $Id$
+/**
+* @file
+* Provides a "profile" node type.
+*/
+
+                      function contact_show_menu() {
+                      
+                       $items['contact_show.html'] = array(
+	                   'title' => 'View Contact Messages',
+                       'page callback' => 'contact_show_form',
+                       'page arguments' => array('contact_show_form'),
+                       'access arguments' => array('access contact_show details'),
+                       'access' => array('anonymous user')
+	                   );
+					   		   
+	                  
+					  
+					  
+                       return $items;	
+                      }
+					
+					function contact_show_init() {
+					//drupal_add_js(drupal_get_path('module', 'contact_show') .'/pay.js');
+					}  
+					  
+					function contact_show_perm() {
+					   return array('access contact_show details');
+					}
+					  
+				    function contact_show_form_alter(&$form, $form_state, $form_id){  
+					
+					if ($form_id == 'page_node_form') { 
+						 // global $user;
+						// echo "<PRE>";
+						// print_r($form);
+						     	//unset($form['menu']);
+							//	unset($form['revision_information']);
+							//	unset($form['comment_settings']);
+							 //   unset($form['author']);
+							//	unset($form['attachments']);
+						
+						 } 
+					
+					}				  
+					
+					
+					
+					
+				
+					
+					// starts contact_show_form
+					
+					function contact_show_form() {
+					
+					
+					
+				     return theme('contact_show_form_page');
+
+					}
+					
+					//
+					
+					
+					
+					
+function contact_show_theme() {
+	return array(
+		'contact_show_form_page' => array(
+        'template' => 'contact_show',
+      	),
+		
+	);
+} 
+	
+	
+	
+					
+function template_preprocess_contact_show_form_page(&$variables)
+{ 
+ global $user; 
+ $variables['template_files'][] = 'contact_show';  
+ $variables[name]='Jon Doe';
+ //$variables[sampleform]=drupal_get_form('upload_image_form');
+ //echo "in the function";
+}
+					
+
+
+?>

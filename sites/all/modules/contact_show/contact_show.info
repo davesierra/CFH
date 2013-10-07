@@ -1,0 +1,5 @@
+; $Id$
+name = contact_show
+description = It is for admin to view contact info.
+package = Custom Project
+core = 6.x

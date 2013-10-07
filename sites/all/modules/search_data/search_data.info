@@ -1,0 +1,5 @@
+; $Id$
+name = search_data
+description = It is for contact us page.
+package = Custom Project
+core = 6.x

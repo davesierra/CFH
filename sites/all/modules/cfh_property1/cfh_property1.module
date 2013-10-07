@@ -1,0 +1,113 @@
+<?php
+// $Id$
+/**
+* @file
+* Provides a "profile" node type.
+*/
+
+                      function cfh_property1_menu() {
+                      
+                       $items['property1'] = array(
+	                   'title' => 'Property',
+                       'page callback' => 'profile_form',
+                       'page arguments' => array('profile_form'),
+                       'access arguments' => array('access profile details')
+                       //'access' => array('anonymous user')
+	                   );
+					   $items['property1/manage'] = array(
+	                   'title' => 'Add Property',
+                       'page callback' => 'profile_form',
+                       'page arguments' => array('profile_form'),
+                       'access arguments' => array('access profile details')
+                       //'access' => array('anonymous user')
+	                   );
+					   $items['property1/list'] = array(
+	                   'title' => 'List Properties',
+                       'page callback' => 'list_func',
+                       'page arguments' => array('list_func'),
+                       'access arguments' => array('access profile details')
+                       //'access' => array('anonymous user')
+	                   );
+	                   $items['property1/%'] = array(
+		                'title' => 'Biography',
+		                'page callback' => 'profile_form',
+		                'page arguments' => array('profile_form'),
+		                'access arguments' => array('access profile details')
+	                   );
+	                  
+					  
+					  
+                       return $items;	
+                      }
+					
+					function cfh_property1_init() {
+					drupal_add_js(drupal_get_path('module', 'cfh_property1') .'/pay.js');
+					}  
+					  
+					function cfh_property1_perm() {
+					   return array('access profile details');
+					}
+					  
+					  					  
+					
+					
+					
+					
+				
+					
+					// starts profile_form
+					
+					function profile_form() {
+					
+				     return theme('profile_form_page');
+
+					}
+					
+					//
+					
+					// starts list_func
+					
+					function list_func() {
+					
+				     return theme('list_property');
+
+					}
+					
+					//
+					
+					
+function cfh_property1_theme() {
+	return array(
+		'profile_form_page' => array(
+        'template' => 'add-property',
+      	),
+		'list_property' => array(
+        'template' => 'list-property',
+      	),
+		
+	);
+} 
+	
+	
+	
+					
+function template_preprocess_profile_form_page(&$variables)
+{ 
+ global $user; 
+ $variables['template_files'][] = 'add-property';  
+ $variables[name]='Jon Doe';
+ //$variables[sampleform]=drupal_get_form('upload_image_form');
+ //echo "in the function";
+}
+function template_preprocess_list_property(&$variables)
+{ 
+ global $user; 
+ $variables['template_files'][] = 'list-property';  
+ $variables[name]='Jon Doe';
+ //$variables[sampleform]=drupal_get_form('upload_image_form');
+ //echo "in the function";
+}					
+					
+
+
+?>

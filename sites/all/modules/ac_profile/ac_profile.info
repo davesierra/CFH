@@ -1,0 +1,5 @@
+; $Id$
+name = ac_profile
+description = It contains biography,preview and custom url.
+core = 6.x
+package = Custom Project

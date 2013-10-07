@@ -1,0 +1,91 @@
+<?php
+// $Id$
+/**
+* @file
+* Provides a "profile" node type.
+*/
+
+                      function add_links_menu() {
+                      
+                       $items['add_links.html'] = array(
+	                   'title' => 'Edit Pay Rent Online Link',
+                       'page callback' => 'add_links_form',
+                       'page arguments' => array('add_links_form'),
+                       'access arguments' => array('access add_links details'),
+                       'access' => array('anonymous user')
+	                   );
+					   		   
+	                  
+					  
+					  
+                       return $items;	
+                      }
+					
+					function add_links_init() {
+					//drupal_add_js(drupal_get_path('module', 'add_links') .'/pay.js');
+					}  
+					  
+					function add_links_perm() {
+					   return array('access add_links details');
+					}
+					  
+				    function add_links_form_alter(&$form, $form_state, $form_id){  
+					
+					if ($form_id == 'page_node_form') { 
+						 // global $user;
+						// echo "<PRE>";
+						// print_r($form);
+						     	//unset($form['menu']);
+							//	unset($form['revision_information']);
+							//	unset($form['comment_settings']);
+							 //   unset($form['author']);
+							//	unset($form['attachments']);
+						
+						 } 
+					
+					}				  
+					
+					
+					
+					
+				
+					
+					// starts add_links_form
+					
+					function add_links_form() {
+					
+					
+					
+				     return theme('add_links_form_page');
+
+					}
+					
+					//
+					
+					
+					
+					
+function add_links_theme() {
+	return array(
+		'add_links_form_page' => array(
+        'template' => 'add_links',
+      	),
+		
+	);
+} 
+	
+	
+	
+					
+function template_preprocess_add_links_form_page(&$variables)
+{ 
+ global $user; 
+ $variables['template_files'][] = 'add_links';  
+ $variables[name]='Jon Doe';
+ //$variables[sampleform]=drupal_get_form('upload_image_form');
+ //echo "in the function";
+}
+					
+
+
+?>

@@ -1,0 +1,5 @@
+; $Id$
+name = cfh_property1
+description = It is for adding properties.
+package = Custom Project
+core = 6.x

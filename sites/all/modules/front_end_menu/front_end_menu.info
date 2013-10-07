@@ -1,0 +1,5 @@
+; $Id$
+name = front_end_menu
+description = It is for admin to view contact info.
+package = Custom Project
+core = 6.x

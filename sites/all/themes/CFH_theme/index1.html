@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<!--[if IE 6]>
+<SCRIPT src="js/DD_belatedPNG_0.0.8a-min.js"></SCRIPT>
+<SCRIPT>
+      DD_belatedPNG.fix('img,div,h1,a,li,.slider li');
+</SCRIPT>
+<![endif]-->
+<!--
+  jQuery library
+-->
+<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+<!--
+  jCarousel library
+-->
+<script type="text/javascript" src="js/jquery.jcarousel.min.js"></script>
+<!--
+  jCarousel skin stylesheet
+-->
+<link rel="stylesheet" type="text/css" href="css/skin.css" />
+<script type="text/javascript">
+
+function mycarousel_initCallback(carousel)
+{
+    // Disable autoscrolling if the user clicks the prev or next button.
+    carousel.buttonNext.bind('click', function() {
+        carousel.startAuto(0);
+    });
+
+    carousel.buttonPrev.bind('click', function() {
+        carousel.startAuto(0);
+    });
+
+    // Pause autoscrolling if the user moves with the cursor over the clip.
+    carousel.clip.hover(function() {
+        carousel.stopAuto();
+    }, function() {
+        carousel.startAuto();
+    });
+};
+
+jQuery(document).ready(function() {
+    jQuery('#mycarousel').jcarousel({
+        auto: 2,
+        wrap: 'last',
+        initCallback: mycarousel_initCallback
+    });
+});
+
+</script>
+
+</head>
+
+<body>
+	
+    <!-- BEGIN : Outer Main-->
+    	<div id="outer_main">
+        
+        	<!-- BEGIN : Main Div-->
+            	<div id="main_div">
+                
+                	<!-- BEGIN : Header-->
+                        <div id="header">
+                        
+                        	<!-- BEGIN : Logo-->
+                                <div id="logo">
+                                    <h1><a href="index.html">CFH</a></h1>
+                                </div>
+                            <!-- END : Logo-->
+                            
+                            <!-- BEGIN : Search-->
+                                <div id="search_area">
+                                   <input name="" type="button" class="serch_btn" />
+                                   <input name="" type="text" class="serch_field" />
+                                </div>
+                            <!-- END : Search-->
+                            <div class="clear"></div>
+                            <!-- BEGIN : Menu-->
+                                <div id="menu">
+                                  	<ul>
+                                    	<li class="nav1"><a href="#" ></a></li>
+                                        <li class="nav2"><a href="#" ></a></li>
+                                        <li class="nav3"><a href="#" ></a></li>
+                                        <li class="nav4"><a href="#" ></a></li>
+                                        <li class="nav5"><a href="#" ></a></li>
+                                        <li class="nav6"><a href="#" ></a></li>
+                                        <li class="nav7"><a href="#" ></a></li>
+                                    </ul>
+                                </div>
+                            <!-- END : Menu-->
+                        
+                        </div>
+                    <!-- BEGIN : Header-->
+                    
+                    <!-- BEGIN : Middle container-->
+                        <div id="middle_container">
+                        
+                        	<!-- BEGIN : Banner-->
+                                <div id="banner">
+                                </div>
+                            <!-- BEGIN : Banner-->
+                            
+                            <!-- BEGIN : Quick links-->
+                                <div class="quick_links">
+                                	<input name="" type="button" class="investors" />
+                                	<input name="" type="button" class="commerical" />
+                                	<input name="" type="button" class="residential" />
+                                	<input name="" type="button" class="pay_rent" />
+                                </div>
+                            <!-- BEGIN : Quick links-->
+                            
+                            <!-- BEGIN : Featured Properties-->
+                                <div class="featured_properties">
+                               	  <h2>Featured properties </h2>
+                                    
+                                    <!-- BEGIN : Gallery -->
+                                    	<div class="slider">
+                                        	<ul id="mycarousel" class="jcarousel-skin-tango">
+                                            	<li><img src="images/img_1.jpg" width="93" height="70" alt="image1" /></li>
+                                                <li><img src="images/img_2.jpg" width="93" height="70" alt="image1" /></li>
+                                                <li><img src="images/img_3.jpg" width="93" height="70" alt="image1" /></li>
+                                                <li><img src="images/img_4.jpg" width="93" height="70" alt="image1" /></li>
+                                               <li><img src="images/img_1.jpg" width="93" height="70" alt="image1" /></li>
+                                                <li><img src="images/img_2.jpg" width="93" height="70" alt="image1" /></li>
+                                                <li><img src="images/img_3.jpg" width="93" height="70" alt="image1" /></li>
+                                                <li><img src="images/img_4.jpg" width="93" height="70" alt="image1" /></li>
+                                                <li><img src="images/img_1.jpg" width="93" height="70" alt="image1" /></li>
+                                                <li><img src="images/img_2.jpg" width="93" height="70" alt="image1" /></li>
+                                                <li><img src="images/img_3.jpg" width="93" height="70" alt="image1" /></li>
+                                               
+                                            </ul>
+                                        </div>
+                                    <!-- END : Gallery -->
+                                    
+                                </div>
+                            <!-- BEGIN : Featured Properties-->
+                        
+                        </div>
+                    <!-- BEGIN : Middle container-->
+                    
+                    <!-- BEGIN : Footer container-->
+                        <div id="footer">
+                        	<p><a href="#">Company Overview</a> |  <a href="#">Services</a> |  <a href="#">Properties</a> |  <a href="#">Careers</a> |   <a href="#">Investors</a> |  <a href="#">Contact</a></p>
+                            © 2010 CFH Group  |  Terms and Conditions 
+                        </div>
+                    <!-- BEGIN : Footer container-->
+                
+                </div>
+			<!-- BEGIN : Main Div-->
+        
+        </div>
+    <!-- END : Outer Main-->
+    
+</body>
+</html>

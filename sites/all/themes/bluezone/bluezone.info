@@ -1,0 +1,14 @@
+name = Blue Zone
+description = Simple blue theme.
+version = 2.0
+core = 6.x
+engine = phptemplate
+
+regions[content] = Content
+regions[sidebar] = Sidebar
+; Information added by drupal.org packaging script on 2009-10-30
+version = "6.x-3.0"
+core = "6.x"
+project = "bluezone"
+datestamp = "1256913911"
+

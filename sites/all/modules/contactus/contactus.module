@@ -1,0 +1,91 @@
+<?php
+// $Id$
+/**
+* @file
+* Provides a "profile" node type.
+*/
+
+                      function contactus_menu() {
+                      
+                       $items['contactus.html'] = array(
+	                   'title' => 'Contact us',
+                       'page callback' => 'contactus_form',
+                       'page arguments' => array('contactus_form'),
+                       'access arguments' => array('access contactus details'),
+                       'access' => array('anonymous user')
+	                   );
+					   		   
+	                  
+					  
+					  
+                       return $items;	
+                      }
+					
+					function contactus_init() {
+					//drupal_add_js(drupal_get_path('module', 'contactus') .'/pay.js');
+					}  
+					  
+					function contactus_perm() {
+					   return array('access contactus details');
+					}
+					  
+				    function contactus_form_alter(&$form, $form_state, $form_id){  
+					
+					if ($form_id == 'page_node_form') { 
+						 // global $user;
+						// echo "<PRE>";
+						// print_r($form);
+						     	//unset($form['menu']);
+								unset($form['revision_information']);
+								unset($form['comment_settings']);
+							    unset($form['author']);
+								unset($form['attachments']);
+						
+						 } 
+					
+					}				  
+					
+					
+					
+					
+				
+					
+					// starts contactus_form
+					
+					function contactus_form() {
+					
+					
+					
+				     return theme('contactus_form_page');
+
+					}
+					
+					//
+					
+					
+					
+					
+function contactus_theme() {
+	return array(
+		'contactus_form_page' => array(
+        'template' => 'contactus',
+      	),
+		
+	);
+} 
+	
+	
+	
+					
+function template_preprocess_contactus_form_page(&$variables)
+{ 
+ global $user; 
+ $variables['template_files'][] = 'contactus';  
+ $variables[name]='Jon Doe';
+ //$variables[sampleform]=drupal_get_form('upload_image_form');
+ //echo "in the function";
+}
+					
+
+
+?>

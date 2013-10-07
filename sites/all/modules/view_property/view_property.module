@@ -1,0 +1,184 @@
+<?php
+// $Id$
+/**
+* @file
+* Provides a "profile" node type.
+*/
+
+                      function view_property_menu() {
+                      
+                       $items['view_property'] = array(
+	                   'title' => 'View Property',
+                       'page callback' => 'view_form',
+                       'page arguments' => array('view_form'),
+                       'access arguments' => array('access view details'),
+                       'access' => array('anonymous user')
+	                   );
+					   $items['view_property/commercial/%'] = array(
+	                   'title' => 'Commercial',
+                       'page callback' => 'view_form',
+                       'page arguments' => array('view_form'),
+                       'access arguments' => array('access view details'),
+                       'access' => array('anonymous user')
+	                   );
+					   $items['view_property/residential/%'] = array(
+	                   'title' => 'Residencial',
+                       'page callback' => 'view_form',
+                       'page arguments' => array('view_form'),
+                       'access arguments' => array('access view details'),
+                       'access' => array('anonymous user')
+	                   );
+					   
+	                  
+					  
+					  
+                       return $items;	
+                      }
+					
+					function view_property_init() {
+					//drupal_add_js(drupal_get_path('module', 'view_property') .'/pay.js');
+					}  
+					  
+					function view_property_perm() {
+					   return array('access view details');
+					}
+					  
+				    function view_property_form_alter(&$form, $form_state, $form_id){  
+					// print $form_id;
+					if((arg(3) == 2) and (arg(4) == "add")) {
+					drupal_set_title("Add Place Category Items");
+					}
+					else if((arg(3) == 1) and (arg(4) == "add")) {
+					drupal_set_title("Add Property Type Items");
+					}
+					else if((arg(3) == 3) and (arg(4) == "add")) {
+					drupal_set_title("Add Contact Category Items");
+					}
+					else if((arg(3) == 2) and (arg(4) == "")) {
+					drupal_set_title("List Place Category Items");
+					}
+					else if((arg(3) == 1) and (arg(4) == "")) {
+					drupal_set_title("List Property Type Items");
+					}
+					else if((arg(3) == 3) and (arg(4) == "")) {
+					drupal_set_title("List Contact Category Items");
+					}
+					
+					if($form_id=="taxonomy_form_term") {
+					
+					if($_POST['op'] == "Save") {
+					if(($_POST['id_hid'] != "") && (arg(4) != "add")) {
+					db_query("update term_data set email='".$_POST['email']."' where tid=".$_POST['id_hid']);
+					}
+					}
+					//echo "<PRE>";
+					// print_r($form);
+					 if((arg(5) != "") && (arg(5) != "term")) {
+					 $email = db_result(db_query("select email from term_data where tid=".arg(5)));
+					 $arg=db_result(db_query("select vid from term_data where tid=".arg(5)));
+					 }
+					 else {
+					 $arg=arg(3);
+					 }
+					 if(($arg == 3) && ($_POST['op'] != "Delete")) {
+					 
+					 $form['identification']['email'] =  array(
+														'#type' => 'textfield',
+														'#title' => t('Email'),
+														'#value' => $email
+														 ); 
+					 $form['identification']['id_hid'] =  array(
+														'#type' => 'hidden',
+														'#title' => t('tid'),
+														'#value' => arg(5)
+														 ); 									  
+					 }									 
+					}
+					 
+			        if ($form_id == 'taxonomy_overview_terms') {
+					//// echo "<PRE>";
+					// print_r($form);
+					 
+					}
+					if ($form_id == 'taxonomy_form_term') { 
+					 unset($form['advanced']);
+					 unset($form['identification']['description']);
+					 $form['identification']['name']['#title'] = 'Category Name';
+					 $form['identification']['#collapsible'] = 0;
+					 
+					}
+					if ($form_id == 'user_profile_form') { 
+					 // echo "<PRE>";
+					 // print_r($form);
+					 unset($form['theme_select']);
+					 unset($form['block']);
+					 unset($form['timezone']);
+					 unset($form['contact']);
+					 unset($form['account']['status']);
+					 unset($form['fckeditor']);
+					 
+					}
+					//print $form_id;
+					if ($form_id == 'system_modules') { 
+					//echo "<PRE>";
+					//print_r($form);
+					}
+					if ($form_id == 'page_node_form') { 
+					            unset($form['menu']);
+								unset($form['revision_information']);
+								unset($form['comment_settings']);
+							    unset($form['author']);
+								unset($form['attachments']);
+						        unset($form['body_field']['format']);
+								unset($form['options']);
+								unset($form['body_field']['teaser_include']);
+								//echo "<PRE>";
+						        //print_r($form);
+						 } 
+					
+					}				  
+					
+					
+					
+					
+				
+					
+					// starts view_form
+					
+					function view_form() {
+					
+					
+					
+				     return theme('view_form_page');
+
+					}
+					
+					//
+					
+					
+					
+					
+function view_property_theme() {
+	return array(
+		'view_form_page' => array(
+        'template' => 'view-property',
+      	),
+		
+	);
+} 
+	
+	
+	
+					
+function template_preprocess_view_form_page(&$variables)
+{ 
+ global $user; 
+ $variables['template_files'][] = 'view-property';  
+ $variables[name]='Jon Doe';
+ //$variables[sampleform]=drupal_get_form('upload_image_form');
+ //echo "in the function";
+}
+					
+
+
+?>

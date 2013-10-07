@@ -1,0 +1,5 @@
+; $Id$
+name = add_facebook
+description = It is for admin to view contact info.
+package = Custom Project
+core = 6.x
