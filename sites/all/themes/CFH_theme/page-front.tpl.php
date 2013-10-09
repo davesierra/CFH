@@ -13,6 +13,9 @@ $payrent_online_link_row_link=$payrent_online_link_row->link;
 <title>CFH</title>
 <link href="<?=$base_url?>/sites/all/themes/CFH_theme/css/style1.css" rel="stylesheet" type="text/css" />
 <link href="<?=$base_url?>/sites/all/themes/CFH_theme/css/chromestyle.css" rel="stylesheet" type="text/css"/>
+
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,900' rel='stylesheet' type='text/css'>
+
 <script src="<?=$base_url?>/sites/all/themes/CFH_theme/js/chrome.js" type="text/javascript"></script>
 <!--[if IE 6]>
 <SCRIPT src="<?=$base_url?>/sites/all/themes/CFH_theme/js/DD_belatedPNG_0.0.8a-min.js"></SCRIPT>
@@ -84,13 +87,14 @@ jQuery(document).ready(function() {
     <div id="menu">
       <div  id="chromemenu">
         <ul>
-          <li class="nav1"><a href=""<?=$base_url?>" >Home</a></li>
+          <li class="nav1"><a href="<?=$base_url?>" >Home</a></li>
           <li class="nav2"><a href="<?=$base_url?>/company_overview.html" >Company Overview</a></li>
           <li class="nav3"><a href="<?=$base_url?>/services.html" >Services</a></li>
           <li class="nav4"><a href="<?=$base_url?>/view_property" rel="dropmenu1">Property</a></li>
           <li class="nav5"><a href="<?=$base_url?>/career.html" >Careers</a></li>
           <!--<li class="nav6"><a href="#" ></a></li>-->
           <li class="nav7"><a href="<?=$base_url?>/contactus.html" >Contact us</a></li>
+          <li class="nav8"><a href="<?=$base_url?>/contactus.html" >News</a></li>
         </ul>
       </div>
     </div>

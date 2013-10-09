@@ -200,80 +200,35 @@ header_container {
 }
 #menu ul {
 	margin:0;
-	padding:0 50px 0 60px;
+	padding:0 0px;
+	text-align: center;
 }
 #menu li {
-	float:left;
-	padding:0;
+	display:inline-block;
+	padding:0 0px;
 	margin:0;
 	list-style:none;
 	height:27px;
-	text-indent:-999999px;
 }
 #menu li a {
 	display:block;
+	padding:0 30px;
 	background-position:0px 0px;
 	height:27px;
+	line-height: 27px;
+	font-family: 'Arial Black', Gadget, sans-serif;
+	font-weight: 700;
+	color:#f3f5f6;
+	text-transform: uppercase;
+	font-size: 11px;
+	text-shadow: 1px 1.5px 1px rgba(0, 0, 0, 0.9);
+	opacity: .95;
+	/*Arial, Helvetica, sans-serif*/
 }
 #menu li a:hover {
 	display:block;
-	background-position:0px -27px;
-}
-.nav1 a {
-	background:url(../images/nav_home.gif) no-repeat;
-	width:134px;
-}
-.nav1 a:hover {
-	background:url(../images/nav_home.gif) no-repeat;
-	width:134px;
-}
-.nav2 a {
-	background:url(../images/nav_company.gif) no-repeat;
-	width:171px;
-}
-.nav2 a:hover {
-	background:url(../images/nav_company.gif) no-repeat;
-	width:171px;
-}
-.nav3 a {
-	background:url(../images/nav_services.gif) no-repeat;
-	width:144px;
-}
-.nav3 a:hover {
-	background:url(../images/nav_services.gif) no-repeat;
-	width:144px;
-}
-.nav4 a {
-	background:url(../images/nav_properties.gif) no-repeat;
-	width:127px;
-}
-.nav4 a:hover {
-	background:url(../images/nav_properties.gif) no-repeat;
-	width:127px;
-}
-.nav5 a {
-	background:url(../images/nav_careers.gif) no-repeat;
-	width:144px;
-}
-.nav5 a:hover {
-	background:url(../images/nav_careers.gif) no-repeat;
-	width:144px;
-}
-.nav6 a {
-	background:url(../images/nav_investors.gif) no-repeat;
-	width:119px;
-}
-.nav6 a:hover {
-	background:url(../images/nav_investors.gif) no-repeat;
-	width:119px;
-}
-.nav7 a {
-	background:url(../images/nav_contat.gif) no-repeat;
-	width:142px;
-}
-.nav7 a:hover {
-	background:url(../images/nav_contat.gif) no-repeat;
-	width:142px;
+	background-color:#a0a0a0;
+	text-decoration: none;
 }
 /*------------------->> Middle Container <<--------------------*/
 #middle_container {
