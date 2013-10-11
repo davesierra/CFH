@@ -10,6 +10,8 @@ global $base_url;
 <link href="<?=$base_url?>/sites/all/themes/CFH_theme/css/chromestyle.css" rel="stylesheet" type="text/css"/>
 
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,800,700' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Lato:400,700,900' rel='stylesheet' type='text/css'>
 
 <script src="<?=$base_url?>/sites/all/themes/CFH_theme/js/chrome.js" type="text/javascript"></script>
 <!--[if IE 6]>
@@ -85,18 +87,19 @@ jQuery(document).ready(function() {
     <div class="clear"></div>
   </div>
   <!-- BEGIN : Menu-->
+
 <div id="menu_container">
     <div id="menu">
       <div  id="chromemenu">
         <ul>
           <li class="nav1"><a href="<?=$base_url?>" >Home</a></li>
-          <li class="nav2"><a href="<?=$base_url?>/company_overview.html" >Company Overview</a></li>
+          <li class="nav2"><a href="<?=$base_url?>/company_overview.html" >Our Company</a></li>
           <li class="nav3"><a href="<?=$base_url?>/services.html" >Services</a></li>
           <li class="nav4"><a href="<?=$base_url?>/view_property" rel="dropmenu1">Property</a></li>
           <li class="nav5"><a href="<?=$base_url?>/career.html" >Careers</a></li>
           <!--<li class="nav6"><a href="#" ></a></li>-->
           <li class="nav7"><a href="<?=$base_url?>/contactus.html" >Contact us</a></li>
-          <li class="nav8"><a href="<?=$base_url?>/contactus.html" >News</a></li>
+          <li class="nav8"><a href="<?=$base_url?>/news" >News</a></li>
         </ul>
       </div>
       <div id="dropmenu1" class="dropmenudiv"> 
@@ -288,21 +291,29 @@ jQuery(document).ready(function() {
   
   <?php  
   }
-  if(arg(1) == 219) {
-  ?>
-  <div class="green_head_container" id="right_container">
-  <div class="greenlandingPage">
-  <?php   print $content;  ?>
-  </div>
-  </div>
-  <?php	   
- 	   
-	   
-   }
-   else {
-   print $content; 
-   }
-   }
+  if(arg(1) == 219) { ?>
+    <div class="green_head_container" id="right_container">
+      <div class="greenlandingPage">
+        <?php print $content;  ?>
+      </div>
+    </div>
+  <?php
+  } else if (arg(1) == 230) { ?>
+    <div class="news_container" id="right_container">
+      <div class="news_page">
+        <div class="topshadow_effect">&nbsp;</div>
+        <h2 class="blue_hdr">News</h2>
+        <div class="content_text">
+          <?php print $content;  ?>
+        </div>
+        
+      </div>
+    </div>
+    <?php
+  }else {
+    print $content; 
+  }
+  }
    
    ?>
   <div class="clear"></div>
@@ -337,7 +348,7 @@ jQuery(document).ready(function() {
     </div>
  <div id="footer" style="position:relative">
  <?php }
- else if(arg(1) == 4) {  
+ else if(arg(1) == 4 || arg(1) == 230) {  
    ?>
   
   <div class="clear"></div>
@@ -378,7 +389,7 @@ jQuery(document).ready(function() {
     </div>
   <div id="footer" style="position:relative">
  <?php }
-  else if(arg(1) == 219) {  
+  else if(arg(1) == 219 ) {  
    ?>
   
   <div class="clear"></div>

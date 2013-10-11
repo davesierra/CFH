@@ -88,13 +88,13 @@ jQuery(document).ready(function() {
       <div  id="chromemenu">
         <ul>
           <li class="nav1"><a href="<?=$base_url?>" >Home</a></li>
-          <li class="nav2"><a href="<?=$base_url?>/company_overview.html" >Company Overview</a></li>
+          <li class="nav2"><a href="<?=$base_url?>/company_overview.html" >Our Company</a></li>
           <li class="nav3"><a href="<?=$base_url?>/services.html" >Services</a></li>
           <li class="nav4"><a href="<?=$base_url?>/view_property" rel="dropmenu1">Property</a></li>
           <li class="nav5"><a href="<?=$base_url?>/career.html" >Careers</a></li>
           <!--<li class="nav6"><a href="#" ></a></li>-->
           <li class="nav7"><a href="<?=$base_url?>/contactus.html" >Contact us</a></li>
-          <li class="nav8"><a href="<?=$base_url?>/contactus.html" >News</a></li>
+          <li class="nav8"><a href="<?=$base_url?>/news" >News</a></li>
         </ul>
       </div>
     </div>

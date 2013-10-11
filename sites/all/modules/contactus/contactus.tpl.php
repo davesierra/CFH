@@ -138,7 +138,7 @@ $attention11 = db_query("select * from term_data where vid='3'");
               <div class="lable">Name:</div>
               <input type="text" class="validate[required,custom[onlyLetter],length[0,100]] contact_input" name="name" id="name" />
               <br class="clear"/>
-              <div class="lable">E mail address:</div>
+              <div class="lable">E-mail address:</div>
               <input type="text" class="validate[required,custom[email]] contact_input" name="email" id="email" />
               <br class="clear"/>
               <div class="lable">Subject:</div>
