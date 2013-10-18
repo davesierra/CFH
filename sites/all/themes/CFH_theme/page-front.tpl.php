@@ -119,9 +119,10 @@ jQuery(document).ready(function() {
        <!-- BEGIN : quick links -->
       <div class="quick_links">
        <!-- <input name="investors" type="button" class="investors" />-->
-        <input name="pay_rent" type="button" class="pay_rent" onclick="window.open('<?php echo $payrent_online_link_row->link; ?>','_blank');" />
-        <input name="commercial" type="button" class="commerical"  onclick="location.href='view_property/commercial'"/>
-        <input name="residential" type="button" class="residential" onclick="location.href='view_property/residential'"/>
+        <input name="pay_rent" type="button" class="pay_rent btn" onclick="window.open('<?php echo $payrent_online_link_row->link; ?>','_blank');" />
+        <input name="commercial" type="button" class="commerical btn"  onclick="location.href='view_property/commercial'"/>
+        <input name="residential" type="button" class="residential btn" onclick="location.href='view_property/residential'"/>
+        <input name="login" type="button" class="login btn" onclick="location.href='view_property/residential'"/>
         
       </div> 
       <!-- end : quick links -->

@@ -6,6 +6,9 @@ drupal_goto($base_url."/user");
 }
 ?>
  <script src="<?=$base_url?>/themes/garland/js_menu1/jquery-1.2.1.min.js" type="text/javascript"></script>
+ <script type="text/javascript">
+    //var $j = jQuery.noConflict(true);
+ </script>
  <script src="<?=$base_url?>/themes/garland/js_menu1/jquery.cookie.js" type="text/javascript"></script>
  <script src="<?=$base_url?>/themes/garland/js_menu1/menu.js" type="text/javascript"></script>	
  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -1292,8 +1295,8 @@ EOF;
  ?>
 <link rel="stylesheet" type="text/css" href="<?=$base_url?>/sites/all/modules/view_property/popup.css" />
 <script src="<?=$base_url?>/sites/all/modules/view_property/js1/rotate.js" type="text/javascript"></script>
-<script src="<?=$base_url?>/sites/all/modules/view_property/njs1/jquery-1.js" type="text/javascript"></script>
-<script src="<?=$base_url?>/sites/all/modules/view_property/js1/query-1.2.1.pack.js" type="text/javascript"></script>
+
+<!--<script src="<?=$base_url?>/sites/all/modules/view_property/js1/query-1.2.1.pack.js" type="text/javascript"></script>-->
 <script src="<?=$base_url?>/sites/all/modules/view_property/js1/jquery-easing.1.2.pack.js" type="text/javascript"></script>
 <script src="<?=$base_url?>/sites/all/modules/view_property/js1/jquery-easing-compatibility.1.2.pack.js" type="text/javascript"></script>
 <script src="<?=$base_url?>/sites/all/modules/view_property/js1/coda-slider.1.1.1.pack.js" type="text/javascript"></script>
@@ -1302,13 +1305,14 @@ EOF;
 <!-- Initialize each slider on the page. Each slider must have a unique id -->
 <script type="text/javascript">
 		jQuery(window).bind("load", function() {
-			jQuery("div#slider1").codaSlider()
+			//jQuery("div#slider1").codaSlider()
 			// jQuery("div#slider2").codaSlider()
 			// etc, etc. Beware of cross-linking difficulties if using multiple sliders on one page.
 		});
 		
 		
     $(document).ready(function(){
+    	 //$j('.flexslider').flexslider();
  // add a "rel" attrib if Opera 7+
  if(window.opera) {
   if ($("a.save_list").attr("rel") != ""){ // don't overwrite the rel attrib if already set
@@ -1476,80 +1480,55 @@ function exportmasterfile(url){
             <div class="clear"></div>
             <!-- BEGIN : rgallery-->
             <div class="residential_content">
+
               <div style="position:relative;" >
-              <div style="margin: 20px 17px 1px;">
               <?=$head_desc?>
               </div>
                 <div class="clear"></div>
-                <div id="slider1" class="csw">
-                  <div class="panelContainer">
-                   <?php 
+                  <div class="slider_wrapper pan3lContainer">
+                   	<?php 
 				   
-				    $pictures=db_query("select ci.image_url from cfh_images as ci where ci.pid=".arg(2)." order by ci.order");
-					$cnt_pictures=db_result(db_query("select count(*) from cfh_images where pid=".arg(2))); 
-					$tmp_cnt = 1;
-					$cnt_imgs = 1;
-					$num = 1;
-				 	while($row=db_fetch_object($pictures)) {//print $cnt_imgs;
-					if($cnt_imgs == 1) {
-					$first_url=$base_url."/sites/default/files/imgs/".$row->image_url;
-					}
-					if($tmp_cnt == 1) {
-					$first=$cnt_imgs;
+					    $pictures=db_query("select ci.image_url from cfh_images as ci where ci.pid=".arg(2)." order by ci.order");
+						$cnt_pictures=db_result(db_query("select count(*) from cfh_images where pid=".arg(2))); 
+						$tmp_cnt = 1;
+						$cnt_imgs = 1;
+						$main_img_cnt = 1;
+						$thumb_img_cnt = 1;
+						$num = 1;
 					?>
-                    <div class="panel" style="float:left;" >
-                    <div class="wrapper">
-                    <div class="gallery">
-                    <ul>
-                    <?php
-					
-					}
-					if($tmp_cnt%3 == 0) {
-					?>
-                    
-                    <li onClick="javascript:replace_me('<?=$cnt_imgs?>');" class="no_padding"><img src="<?=$base_url?>/sites/default/files/imgs/thumbs/<?=$row->image_url?>"  alt="" /></li>
-                    <input type="hidden" id="img<?=$cnt_imgs?>" name="img<?=$num?>" value="<?=$base_url?>/sites/default/files/imgs/<?=$row->image_url?>" />
-                    <?Php } else { ?>      
-                    <li onClick="javascript:replace_me('<?=$cnt_imgs?>');" ><img src="<?=$base_url?>/sites/default/files/imgs/thumbs/<?=$row->image_url?>"  alt="" /></li>
-                     <input type="hidden" id="img<?=$cnt_imgs?>" name="img<?=$num?>" value="<?=$base_url?>/sites/default/files/imgs/<?=$row->image_url?>" />
-                   <?php } ?>
-                  
-                           <!-- <li onclick="javascript:replace_me(1);"><img src="<?//=$base_url?>/sites/default/files/imgs/thumbs/<?//=$row->image_url?>"  alt="" /></li>-->
-                           
-                            
-                           <!-- <li onclick="javascript:replace_me(1);"><img src="<?//=$base_url?>/sites/default/files/imgs/thumbs/<?//=$row->image_url?>"  alt="" /></li>
-                            <li onclick="javascript:replace_me(1);"><img src="<?//=$base_url?>/sites/default/files/imgs/thumbs/<//?=$row->image_url?>"  alt="" /></li>
-                            <li onclick="javascript:replace_me(1);" class="no_padding"><img src="<?//=$base_url?>/sites/default/files/imgs/thumbs/<?//=$row->image_url?>"  alt="" /></li>
-                            <li onclick="javascript:replace_me(1);"><img src="<?//=$base_url?>/sites/default/files/imgs/thumbs/<?//=$row->image_url?>"   alt=""/></li>
-                            <li onclick="javascript:replace_me(8);"><img src="<?//=$base_url?>/sites/default/files/imgs/thumbs/<?//=$row->image_url?>"  alt="" /></li>
-                            <li onclick="javascript:replace_me(1);" class="no_padding"><img src="<?//=$base_url?>/sites/default/files/imgs/thumbs/<?//=$row->image_url?>"  alt="" /></li>-->
-                           
-                 <?php if($tmp_cnt== 9 || ($cnt_pictures==$cnt_imgs)) { 
-				// print "<script language='javascript'>replace_me('".$first."')//;//<//script>";
-				 //$num = 1;
-				 ?>        
-                      </ul></div> </div> </div> 
-                 <?php } ?>         
-                 
-                  <?php
-				  //print $tmp_cnt;
-				  $tmp_cnt = $tmp_cnt + 1;
-				  if($tmp_cnt == 10) {
-				  $tmp_cnt=1;
-				  }
-				  
-				  $num = $num + 1;
-				  $cnt_imgs =$cnt_imgs+1;
-				    } ?> </div>
+					<div id="slider" class="gall3ry flexslider">
+                    	<ul class="slides">
+						<?php 
+						// First while loop for main images
+						while($row=db_fetch_object($pictures)) {//print $cnt_imgs; ?>      
+	                		<li><a class="fancybox" rel="group" href="<?=$base_url?>/sites/default/files/imgs/<?=$row->image_url?>">
+	                				<img src="<?=$base_url?>/sites/default/files/imgs/<?=$row->image_url?>"  alt="" /></a></li>
+
+	                 			<?php 
+					    } //end of main image while loop ?>
+ 						</ul>
+ 					</div>
+ 					<div id="carousel" class="gall3ry flexslider">
+                    	<ul class="slides">
+	 					<?php
+					 	// Second while loop for thumb images
+					 	$pictures=db_query("select ci.image_url from cfh_images as ci where ci.pid=".arg(2)." order by ci.order");
+						while($row=db_fetch_object($pictures)) {//print $cnt_imgs; ?>      
+	                		<li><img src="<?=$base_url?>/sites/default/files/imgs/thumbs/<?=$row->image_url?>"  alt="" /></li>
+
+	                 			<?php 
+
+					  		//print $tmp_cnt;
+						  	$tmp_cnt = $tmp_cnt + 1;					  
+							$num = $num + 1;
+							//$cnt_imgs =$cnt_imgs+1;
+							$thumb_img_cnt++;
+					    } //end of thumb image while loop ?>
+						</ul>
+					</div>
+				</div>
                   <!-- .panelContainer -->
-                </div>
-                <div id="right_bar" style="float:left;">
-                  <div id="imagerota03">
-                    <div class="img_container" id="mainimage" style="background-image:url('<?=$first_url?>');"> </div>
-                  </div>
-                  <!-- END: imagerotation -->
-                </div>
-              </div>
+
                <!-- END: gallery -->
               <?php 
 			  $properties=db_query("select * from cfh_property where pid=".arg(2));

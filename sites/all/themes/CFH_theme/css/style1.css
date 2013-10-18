@@ -189,11 +189,15 @@ header_container {
 #menu_container {
 	margin:0;
 	background:url(../images/top_shadow_side.png) no-repeat bottom right;
+	z-index:99;
 }
 #menu {
 	width:984px;
 	margin:0 auto;
-
+	
+}
+#chromemenu {position:relative;
+	
 	background: #b8b8b8; /* Old browsers */
 	background: -moz-linear-gradient(top,  #b8b8b8 0%, #a1a1a1 100%); /* FF3.6+ */
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#b8b8b8), color-stop(100%,#a1a1a1)); /* Chrome,Safari4+ */
@@ -204,7 +208,7 @@ header_container {
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b8b8b8', endColorstr='#a1a1a1',GradientType=0 ); /* IE6-9 */
 
 }
-#menu ul {
+#menu ul {box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.55);
 	margin:0;
 	padding:0 0px;
 	text-align: center;
@@ -276,41 +280,26 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b8b8b8', end
 	height:20px;
 }
 .pay_rent {
-	background:url(../images/pay_rent.gif) no-repeat;
-	width:153px;
-	height:35px;
-	border:0px;
-	cursor:pointer;
-	margin-right:8px;
-	float:right;
+	background:url(../images/pay_rent_btn.png) no-repeat;
 }
 .residential {
-	background:url(../images/residential.gif) no-repeat;
-	width:153px;
-	height:35px;
-	border:0px;
-	cursor:pointer;
-	margin-right:8px;
-	float:right;
+	background:url(../images/residential_btn.png) no-repeat;
 }
 .commerical {
-	background:url(../images/commerical.gif) no-repeat;
-	width:153px;
-	height:35px;
-	border:0px;
-	cursor:pointer;
-	margin-right:8px;
-	float:right;
+	background:url(../images/commercial_btn.png) no-repeat;
 }
 .investors {
 	background:url(../images/investors.gif) no-repeat;
-	width:153px;
-	height:35px;
+}
+.login{
+	background:url(../images/resident_login_btn.png) no-repeat;}
+.btn{
+	width:152px;
+	height:37px;
 	border:0px;
 	cursor:pointer;
 	margin-right:8px;
-	float:right;
-}
+	float:right;}
 /*----------------------->> slider <<--------------------------*/
 .slider {
 	padding:0px;
@@ -534,7 +523,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b8b8b8', end
 	margin:20px 37px 15px 37px;
 }
 .topshadow_effect {
-	background:url(../images/top_shadow_effect.png) repeat-x;
+	/*background:url(../images/top_shadow_effect.png) repeat-x;*/
 	height:8px;
 }
 .about_banner {
@@ -891,7 +880,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b8b8b8', end
 	cursor:pointer;
 }
 .brochure_btn {
-	background:url(../images/brochure.gif) no-repeat;
+	background:url(../images/brochure_btn.png) no-repeat;
 	width:154px;
 	height:35px;
 	border:0px;
@@ -1709,4 +1698,43 @@ margin:0 auto;
 }
 .news_page a {
 	color:blue;
+}
+
+.slider_wrapper{
+	width:550px;
+	margin:auto;
+}
+.slider_wrapper .flexslider {
+	margin-bottom:0px;
+}
+#carousel li {
+margin-right: 5px;
+}
+
+ul#fancy_bullets {
+    position: fixed;
+    bottom: 10px;
+    width: 100%;
+    padding-top: 10px;
+    list-style: none;
+    text-align: center;
+    z-index: 99999;
+}
+
+ul#fancy_bullets li {
+    display: inline;
+    padding: 0 3px;
+}
+
+ul#fancy_bullets li label {
+    width: 5px;
+    height: 5px;
+    border-radius: 100%;
+    display: inline-block;
+    background-color: rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+}
+
+ul#fancy_bullets li.active label {
+    background-color: white;
 }

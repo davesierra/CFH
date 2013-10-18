@@ -23,7 +23,8 @@ global $base_url;
 <!--
   jQuery library
 -->
-<script type="text/javascript" src="<?=$base_url?>/sites/all/themes/CFH_theme/js/jquery-1.4.2.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 <!--
   jCarousel library
 -->
@@ -33,9 +34,85 @@ global $base_url;
 -->
 <link rel="stylesheet" type="text/css" href="<?=$base_url?>/sites/all/themes/CFH_theme/css/skin.css" />
 <script type="text/javascript" src="<?=$base_url?>/sites/all/themes/CFH_theme/js/smoothscroll.js"></script>
+
+<?php if(arg(0) == "view_property") { ?>
+  <!-- 
+  FlexSlider for the View Property pages
+  -->
+<link rel="stylesheet" href="flexslider.css" type="text/css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script src="jquery.flexslider.js"></script>
+
+  <link rel="stylesheet" href="<?=$base_url?>/sites/all/modules/view_property/js1/flexslider/flexslider.css" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+  <script type="text/javascript">
+    // Set a new variable for a noconflict between the original jQ library and the newer one needed for slider
+    var $j = jQuery.noConflict(true);
+  </script>
+  <script type="text/javascript" src="<?=$base_url?>/sites/all/modules/view_property/js1/fancybox/source/jquery.fancybox.js?v=2.1.5"></script>
+  <link rel="stylesheet" type="text/css" href="<?=$base_url?>/sites/all/modules/view_property/js1/fancybox/source/jquery.fancybox.css?v=2.1.5" media="screen" />
+  <script src="<?=$base_url?>/sites/all/modules/view_property/js1/flexslider/jquery.flexslider.js"></script>
+
+  <!-- Place in the <head>, after the three links -->
+  <script type="text/javascript" charset="utf-8">
+    function addLinks() {
+        var list = $("#fancy_bullets");
+        
+        if (!list.length) {    
+            list = $('<ul id="fancy_bullets">');
+        
+            for (var i = 0; i < this.group.length; i++) {
+                $('<li data-index="' + i + '"><label></label></li>').click(function() { 
+                  alert($(this).data('index'));
+                  $.fancybox.jumpto( $(this).data('index'));}).appendTo( list );
+            }
+            
+            list.appendTo( 'body' );
+        }
+
+        list.find('li').removeClass('active').eq( this.index ).addClass('active');
+    }
+
+    function removeLinks() {
+        $("#fancy_bullets").remove();    
+    }
+
+    $(document).ready(function($j){
+      console.log($j().jquery);
+       //$j('.elastislide-list').elastislide();
+      $j(".fancybox").fancybox({
+        autoSize    : 'false',
+        margin      : [20, 60, 20, 60], // Increase left/right margin
+        afterLoad   : addLinks,
+        beforeClose : removeLinks
+      });
+
+      $j('#slider').flexslider({
+        animation: "slide",
+        controlNav: false,
+        animationLoop: false,
+        slideshow: false,
+        sync: "#carous3l"
+      });
+      $j('#carousel').flexslider({
+        animation: "slide",
+        controlNav: false,
+        animationLoop: false,
+        slideshow: false,
+        itemWidth: 75,
+        itemMargin: 5,
+        asNavFor: '#slider'
+      });
+      
+    });
+  </script>
+<?php } ?>
+
+
 <?php
 if(arg(2) == "") {
  ?>
+
 <script type="text/javascript">
 
 function mycarousel_initCallback(carousel)
