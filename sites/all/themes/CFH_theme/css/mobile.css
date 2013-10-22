@@ -1,0 +1,38 @@
+@media only screen and (max-width: 480px) { 
+
+
+#header {
+	background-image: none;
+	width:auto;
+	}
+#menu {
+	width: 100%;
+}
+#logo {
+	margin:auto;
+	float:none;
+	background-size:100%;
+}
+
+#banner {
+	display:none;
+}
+#outer_main {
+	width:auto;
+}
+.middle_container_inner {
+	width: auto;
+}
+
+
+/* FRONT PAGE */
+.front-page #logo {
+	width: 250px;
+	height: 120px;
+}
+.front-page #menu_container {
+	display:none;
+}
+
+
+}

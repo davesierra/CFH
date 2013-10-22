@@ -39,9 +39,6 @@ global $base_url;
   <!-- 
   FlexSlider for the View Property pages
   -->
-<link rel="stylesheet" href="flexslider.css" type="text/css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-<script src="jquery.flexslider.js"></script>
 
   <link rel="stylesheet" href="<?=$base_url?>/sites/all/modules/view_property/js1/flexslider/flexslider.css" type="text/css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
@@ -52,8 +49,11 @@ global $base_url;
   <script type="text/javascript" src="<?=$base_url?>/sites/all/modules/view_property/js1/fancybox/source/jquery.fancybox.js?v=2.1.5"></script>
   <link rel="stylesheet" type="text/css" href="<?=$base_url?>/sites/all/modules/view_property/js1/fancybox/source/jquery.fancybox.css?v=2.1.5" media="screen" />
   <script src="<?=$base_url?>/sites/all/modules/view_property/js1/flexslider/jquery.flexslider.js"></script>
-
-  <!-- Place in the <head>, after the three links -->
+  
+  <!-- Load FancyBox Helper for custom buttons -->
+  <script src="<?=$base_url?>/sites/all/modules/view_property/js1/fancybox/source/helpers/jquery.fancybox-buttons.js"></script>
+  <link href="<?=$base_url?>/sites/all/modules/view_property/js1/fancybox/source/helpers/jquery.fancybox-buttons.css" rel="stylesheet" type="text/css" media="screen" />
+  
   <script type="text/javascript" charset="utf-8">
     function addLinks() {
         var list = $("#fancy_bullets");
@@ -81,10 +81,25 @@ global $base_url;
       console.log($j().jquery);
        //$j('.elastislide-list').elastislide();
       $j(".fancybox").fancybox({
+        padding     : 0,
+        closeBtn    : false,
         autoSize    : 'false',
         margin      : [20, 60, 20, 60], // Increase left/right margin
         afterLoad   : addLinks,
-        beforeClose : removeLinks
+        beforeClose : removeLinks,
+        wrapCSS     : 'cfh-fancy-wrap',
+        helpers     : {
+              title   : { type : 'inside' },
+              buttons : {}
+        }
+        // tpl         : 
+        //   {
+        //     wrap     : '<div class="fancybox-wrapper" tabIndex="-1"><div class="fancybox-skin"><div class="fancybox-outer"><div class="fancybox-inner"><div class="fancybox-wrap"></div></div></div></div></div>',
+        //     image    : '<img class="fancybox-image" src="{href}" alt="" />',
+        //     closeBtn : '<a title="Close" class="fancybox-item fancybox-close" href="javascript:;"></a>',
+        //     next     : '<a title="Next" class="fancybox-nav fancybox-next" href="javascript:;"><span></span></a>',
+        //     prev     : '<a title="Previous" class="fancybox-nav fancybox-prev" href="javascript:;"><span></span></a>'
+        //   }
       });
 
       $j('#slider').flexslider({
