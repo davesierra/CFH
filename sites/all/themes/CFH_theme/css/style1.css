@@ -10,7 +10,7 @@ body {
 	padding:0;
 	margin:0;
 	background:url(../images/bg.jpg) no-repeat top center #044473;
-	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-family:Arial, Helvetica, sans-serif;
 	color:#4c4c4c;
 	font-size:12px;
 }
@@ -250,6 +250,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b8b8b8', end
 #middle_container {
 	margin:0;
 	background:url(../images/middle_bg.png) repeat-y right;
+	padding-bottom: 100px;
 }
 .middle_container_inner {
 	width:984px;
@@ -270,6 +271,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b8b8b8', end
 }
 .featured_properties {
 	height:115px;
+	position: absolute;
+	top: 660px;
+	margin: 0 15px;
 }
 .featured_properties h2 {
 	margin:0 0 0 30px;
@@ -291,15 +295,17 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b8b8b8', end
 .investors {
 	background:url(../images/investors.gif) no-repeat;
 }
-.login{
+.login {
 	background:url(../images/resident_login_btn.png) no-repeat;}
-.btn{
+.btn {
 	width:152px;
 	height:37px;
 	border:0px;
 	cursor:pointer;
 	margin-right:8px;
-	float:right;}
+	float:right;
+	text-align: center;
+	line-height: 30px;}
 /*----------------------->> slider <<--------------------------*/
 .slider {
 	padding:0px;
@@ -331,16 +337,20 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b8b8b8', end
 	font:10px Arial, Helvetica, sans-serif;
 	_margin-left:1px;
 }
-#footer_home p {
-	padding:10px 25px 5px 0px;
+#footer_home .legal_info {
+	padding:38px 93px 30px 20px;
 	line-height:16px;
 }
-#footer_home a {
-	padding:0px 2px 0px 2px;
+#footer_home .legal_info a {
 	color:#fff;
 	font-weight:normal;
 	text-decoration:none;
+	border-left: 1px solid white;
+	padding-left: 8px;
+	padding-right: 5px;
+
 }
+
 #footer_home a:hover {
 	color:#fff;
 	font-weight:normal;
@@ -1493,13 +1503,13 @@ margin:0 auto;
 	margin-top:50px;
 }
 .footer_logo{
-	background:url(../images/footer_logo_new.gif) no-repeat;
-	height:37px;
-	width:34px;
+	background:url(../images/equal_housing_logo.png) no-repeat;
+	background-size:100%;
+	height:36px;
+	width:36px;
 	position:absolute;
 	float:right;
-	right:-9px;
-	top: 77px;
+	right: 42px; top: 155px;
 }
 /*May 08 2012*/
 

@@ -4,7 +4,10 @@
 #header {
 	background-image: none;
 	width:auto;
-	}
+	height:auto;
+	position:relative;
+	padding-top: 8px;
+}
 #menu {
 	width: 100%;
 }
@@ -22,17 +25,249 @@
 }
 .middle_container_inner {
 	width: auto;
+	padding-top: 20px !important;
+}
+.front-page .middle_container_inner {
+	padding-top: 90px !important;
 }
 
+
+/* MENU */
+.mobile.header-links {
+
+}
+.mobile.header-links a {
+	width:29px;	height:29px;
+	position: absolute;
+	display:block;
+	top: 8px;
+	padding:12px;
+}
+.mobile.header-links a.nav {
+	background:url(../images/menu-icon.png) center center no-repeat;
+	position: absolute;
+	left: 10px;
+}
+.mobile.header-links a.search {
+	display:block;
+	background:url(../images/search-icon.png) center center no-repeat;
+	right: 10px;
+}
+
+#menu_container{
+	display:none;
+	position:absolute;
+}
+#menu li {
+	width: 100%;
+}
+#search_area {
+	display:none;
+	position:absolute;
+}
 
 /* FRONT PAGE */
 .front-page #logo {
-	width: 250px;
-	height: 120px;
+	width: 215px;
+	height: 100px;
 }
-.front-page #menu_container {
+.front-page #search_area {
+	display:block;
+	position: absolute;
+	bottom: -135px;
+}
+
+body{
+	background-size: 150%;
+}
+#middle_container {
+	background: none;
+	margin: 0 10px;
+	padding-bottom: 0;
+}
+#footer_home {
+	background: none;
+}
+
+/* jCarousel Styles */
+.featured_properties {
+	height: 85px;
+}
+
+.jcarousel-skin-tango .jcarousel-container-horizontal {
+    width: 100% !important;
+    padding:0px !important;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+.jcarousel-skin-tango .jcarousel-clip-horizontal {
+	width: 100% !important;
+	height: 70px !important;
+	background-color: white;
+	padding: 2px 0;
+
+}
+
+.jcarousel-skin-tango .jcarousel-prev-horizontal,
+.jcarousel-skin-tango .jcarousel-next-horizontal {
+	display:none !important;
+}
+.featured_properties {
+	height: 75px;
+	position: static;
+	top: 0px;
+	margin:0px;
+}
+.featured_properties h2 {
 	display:none;
 }
 
-
+.slider li {
+	background: none;
 }
+
+
+
+/* Search Button */
+#search {position: relative;}
+#search_area {
+	float: none; width: 100%; padding: 0; height: auto;
+}
+.form-item {margin: 0 20px;}
+#edit-search-theme-form-1 {
+	border-radius: 8px;
+	width: 100%;
+	height: 37px;
+	padding: 2px 45px 2px 18px;
+	margin: 0;
+	box-sizing: border-box;
+	color: #3b3b3b;
+	font-size:14px;
+}
+#edit-submit {
+	background: url("../images/search_btn.png") no-repeat scroll 0 0 transparent;
+	width: 24px;
+	height: 23px;
+	right: 38px; top: 7px;
+	position: absolute;
+}
+
+/* Buttons */
+.quick_links {
+	height: auto;
+	padding: 0;
+	margin: 0 10px;
+}
+
+.btn {
+	background:#FFFFFF;
+	width:100%;
+	border-top:1px solid #044474;
+	margin: 0;
+	text-align: left;
+	padding: 0 20px;
+	display: block;
+	float: none;
+	font-size:14px;
+	line-height: 36px;
+	color:#3b3b3b;
+	box-sizing: border-box;
+}
+.btn:first-child {
+	border-top:none;
+	-webkit-border-top-left-radius: 8px;
+	-webkit-border-top-right-radius: 8px;
+	-moz-border-radius-topleft: 8px;
+	-moz-border-radius-topright: 8px;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+}
+.btn:last-child {
+	-webkit-border-bottom-right-radius: 8px;
+	-webkit-border-bottom-left-radius: 8px;
+	-moz-border-radius-bottomright: 8px;
+	-moz-border-radius-bottomleft: 8px;
+	border-bottom-right-radius: 8px;
+	border-bottom-left-radius: 8px;
+}
+
+
+
+/* View Property */
+
+.slider_wrapper {
+	width: 100%;
+	margin: 0;
+}
+#left_container{
+	display:none;
+}
+#right_container_auto {
+	width: auto;
+	float:none;
+}
+.btn_div {
+	width: auto;
+	float: none;
+	text-align: center;
+	margin: 5px auto;
+	padding: 0;
+}
+.residential_content {
+	margin: 10px 12px;
+}
+.sml_div {
+	width: auto;
+	height: auto;
+	float: none;
+}
+
+
+
+
+/* Footer */
+#footer_home {
+	text-align: left;
+	font: bold 12px Arial, Helvetica, sans-serif;
+	padding:0;
+}
+
+#footer_home a,
+#footer_home a:hover {
+	font-weight: bold !important;
+}
+
+#footer {
+	background: none;
+}
+.footer_logo {
+	right: 20px !important;
+	top: 0px !important;
+}
+#footer_home p {
+	padding: 30px 80px 30px 20px !important;
+}
+
+.greenlogofooter {
+	padding: 0;
+	text-align: center;
+	margin-left: -25px;
+	padding: 25px 0 20px;
+}
+
+/* Legal */
+.legal_info {
+	position:relative;
+	padding: 2px 75px 2px 20px !important;
+}
+.legal_info a {
+	display:none;
+}
+.legal_info a:hover {
+	font-weight:bold;
+}
+.legal_info a.m-show {
+	display:inline;
+}
+
+} /* @media only screen and (max-width: 480px) */
