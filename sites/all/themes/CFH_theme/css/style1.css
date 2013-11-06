@@ -250,6 +250,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b8b8b8', end
 #middle_container {
 	margin:0;
 	background:url(../images/middle_bg.png) repeat-y right;
+}
+.front-page #middle_container {
 	padding-bottom: 100px;
 }
 .middle_container_inner {
@@ -322,14 +324,17 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b8b8b8', end
  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled='true', src='http://192.168.2.44/cfh/sites/all/themes/CFH_theme/images/img_bg.png', sizingMethod='noscale');
 	padding:0px 0px 8px 0px;
 }
+
+
 /*----------------------->> Footer <<--------------------------*/
+
 .footer_main_inner {
 	width:1068px;
 	margin:0 auto;
 }
-/*----------------------->> Footer for home <<--------------------------*/
-#footer_home {
-	background:url(../images/footer_home.png) no-repeat right;
+#footer {
+	background:url(../images/footer_bg2.png) no-repeat top right;
+	margin: 0 auto;
 	height:70px;
 	padding:40px 0;
 	text-align:right;
@@ -337,109 +342,59 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b8b8b8', end
 	font:10px Arial, Helvetica, sans-serif;
 	_margin-left:1px;
 }
-#footer_home .legal_info {
-	padding:38px 93px 30px 20px;
+
+	#footer.home {
+		background:url(../images/footer_home.png) no-repeat top right;}
+	#footer.services {
+		background:url(../images/footer_services.png) no-repeat top right;}
+	#footer.paramount {
+		background:url(../images/footer_paramount.png) no-repeat top right;}
+
+#footer p {
+	padding:10px 45px 5px 0px;
 	line-height:16px;
 }
-#footer_home .legal_info a {
+
+#footer .legal_info {
+	padding: 38px 43px 30px 620px;
+	line-height:16px;
+	position:relative;
+}
+
+	.front-page #footer .legal_info {
+		padding:38px 93px 30px 20px; }
+
+#footer .legal_info a {
 	color:#fff;
 	font-weight:normal;
 	text-decoration:none;
 	border-left: 1px solid white;
 	padding-left: 8px;
-	padding-right: 5px;
+	padding-right: 5px;}
 
-}
-
-#footer_home a:hover {
-	color:#fff;
-	font-weight:normal;
-	text-decoration:underline;
-}
-/*----------------------->> Footer for services <<--------------------------*/
-#footer_services {
-	background:url(../images/footer_services.png) no-repeat right;
-	margin: 0 auto;
-	height:70px;
-	padding:40px 0;
-	text-align:right;
-	color:#fff;
-	font:10px Arial, Helvetica, sans-serif;
-	_margin-left:1px;
-}
-#footer_services p {
-	padding:10px 45px 5px 0px;
-	line-height:16px;
-}
-#footer_services a {
-	padding:0px 2px 0px 2px;
-	color:#fff;
-	font-weight:normal;
-	text-decoration:none;
-}
-#footer_services a:hover {
-	padding:0px 2px 0px 2px;
-	color:#fff;
-	font-weight:normal;
-	text-decoration:underline;
-}
-#footer_paramount {
-	background:url(../images/footer_paramount.png) no-repeat right;
-	margin: 0 auto;
-	height:70px;
-	padding:40px 0;
-	text-align:right;
-	color:#fff;
-	font:10px Arial, Helvetica, sans-serif;
-	_margin-left:1px;
-}
-#footer_paramount p {
-	padding:10px 45px 5px 0px;
-	line-height:16px;
-}
-#footer_paramount a {
-	padding:0px 2px 0px 2px;
-	color:#fff;
-	font-weight:normal;
-	text-decoration:none;
-}
-#footer_paramount a:hover {
-	padding:0px 2px 0px 2px;
-	color:#fff;
-	font-weight:normal;
-	text-decoration:underline;
-}
-/*----------------------->> Footer inner<<--------------------------*/
-#footer {
-	background:url(../images/footer_bg2.png) no-repeat right;
-	margin: 0 auto;
-	height:70px;
-	padding:40px 0;
-	text-align:right;
-	color:#fff;
-	font:10px Arial, Helvetica, sans-serif;
-	_margin-left:1px
-}
-#footer p {
-	padding:10px 45px 5px 0px;
-	line-height:16px;
-}
-#footer a {
-	padding:0px 2px 0px 2px;
-	color:#fff;
-	font-weight:normal;
-	text-decoration:none;
-}
 #footer a:hover {
-	padding:0px 2px 0px 2px;
 	color:#fff;
 	font-weight:normal;
 	text-decoration:underline;
 }
+
+.footer_logo{
+	background:url(../images/equal_housing_logo.png) no-repeat;
+	background-size:100%;
+	height:36px;
+	width:36px;
+	position:absolute;
+	float:right;
+	right: -8px; top: 38px;
+}
+	.front-page .footer_logo{
+		right: 42px; top: 25px; }
+
+
 /* ============= <inner pages> =============== */
 #left_container {
 	width:245px;
-	height:100%;
+	height:auto;
 	float:left;
 	color:#fff;
 }
@@ -619,6 +574,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b8b8b8', end
 	width:48%;
 	height:auto;
 	float:left;
+	margin: 5px;
 }
 .sml_div a {
 	color:#464646;
@@ -645,7 +601,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b8b8b8', end
 	font-family:Arial, Helvetica, sans-serif;
 	color:#464646;
 	font-size:12px;
-	margin:10px 25px;
+	margin:10px 15px;
 	font-weight:500;
 }
 .residential_content a {
@@ -1336,7 +1292,7 @@ h2.head_dynamic {
 	*padding:8px 0px 10px 0px;
 }
 .detil_warp {
-	padding-top:25px;
+	padding:25px 10px 0;
 	_padding-top:5px;
 	*padding-top:5px;
 }
@@ -1502,15 +1458,8 @@ margin:0 auto;
 	float:right;
 	margin-top:50px;
 }
-.footer_logo{
-	background:url(../images/equal_housing_logo.png) no-repeat;
-	background-size:100%;
-	height:36px;
-	width:36px;
-	position:absolute;
-	float:right;
-	right: 42px; top: 155px;
-}
+
+
 /*May 08 2012*/
 
 .greenlandingPage{
@@ -1711,7 +1660,7 @@ margin:0 auto;
 }
 
 .slider_wrapper{
-	width:550px;
+	width:700px;
 	margin:auto;
 }
 .slider_wrapper .flexslider {

@@ -49,11 +49,11 @@
 .jcarousel-skin-tango .jcarousel-next-horizontal {
     position: absolute;
     top: 0px;
-    right: 8px;
-    width: 23px;
-    height: 77px;
+    right: 0px;
+    width: 18px;
+    height: 70px;
     cursor: pointer;
-    background:url(../images/right_arrow.gif) no-repeat;
+    background:url(../images/right-arrow.png) no-repeat;
 }
 
 /*.jcarousel-skin-tango .jcarousel-next-horizontal:hover {
@@ -76,9 +76,9 @@
     top: 0px;
     left: 0px;
     width: 18px;
-    height: 77px;
+    height: 70px;
     cursor: pointer;
-    background:url(../images/left_arrow.gif) no-repeat;
+    background:url(../images/left-arrow.png) no-repeat;
 }
 
 /*.jcarousel-skin-tango .jcarousel-prev-horizontal:hover {

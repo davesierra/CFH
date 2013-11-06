@@ -41,15 +41,15 @@ $cnt=1;
       <!-- BEGIN : left side content-->
       <div id="left_container">
         <div class="left_container_sml">
-          <div class="topshadow_effect"></div>
-          <div class="sidelink">
-            <!--<p>Past Projects</p>-->
-           
-            <?php $facebook_link=db_result(db_query("select link from cfh_facebook")); ?>        
-         <input type="button" class="facebook" onClick="window.open('<?=$facebook_link?>','_blank');" />
-          </div>
-          <div class="clear"></div>
-        </div>
+			<div class="topshadow_effect"></div>
+			<div class="sidelink">
+			<!--<p>Past Projects</p>-->
+
+			<?php $facebook_link=db_result(db_query("select link from cfh_facebook")); ?>        
+				<input type="button" class="facebook" onClick="window.open('<?=$facebook_link?>','_blank');" />
+			</div>
+			<div class="clear"></div>
+		</div>
       </div>
       <!-- end : left side content-->
       <!-- BEGIN : right side content-->
@@ -1347,7 +1347,8 @@ function exportmasterfile(url){
 		
 		
 </script>
-<div id="popupContact"></div><div id="backgroundPopup"></div>
+<div id="popupContact"></div>
+<div id="backgroundPopup"></div>
   <!-- end : Menu-->
   <!-- BEGIN : Middle container-->
   <div id="middle_container" >
@@ -1460,22 +1461,30 @@ function exportmasterfile(url){
 	   ?> <h2 align="center" style="font-size:15px;"><?php
        if($sent != "") { print "<script language='javascript'>showpopup('Thanks');</script>"; }
 	   ?></h2>
-           <?php if(arg(1) != "commercial") { ?>  <div class="nobhill_logo" style="background:url('<?=$logo_url?>') no-repeat;"></div> <?php } else {
+           <?php if(arg(1) != "commercial") { ?>  
+           <div class="nobhill_logo" style="background:url('<?=$logo_url?>') center center no-repeat;"></div> <?php } else {
 		   $head=db_result(db_query("select title from cfh_property where pid=".arg(2)));
 		   $head_desc = db_result(db_query("select header_section from cfh_property where pid=".arg(2)));
 		   ?>
-           <div> <p style="color:#0363A8;float:left; font-size:22px; margin:20px 37px 15px;"><?=$head?></p></div>
-           <?php } ?>
+        	<div>
+				<p style="color:#0363A8;float:left; font-size:22px; margin:20px 37px 15px;"><?=$head?></p>
+			</div>
+			<?php } ?>
             
-         <?php if($brochure != "") { ?>   <div class="btn_div"> <?php } else { ?> <div style="padding-right: 45px; margin-top: 30px;"> <?php } ?>
-            <?php $map_url=$base_url."/".arg(0)."/".arg(1)."/".arg(2)."/map"; ?>
-           <?php if($brochure != "") {?>   <input name="#" type="button" class="map_btn" onClick="window.open('<?=$map_url?>','_self')"  /> <?php } 
-		   else {
-		   ?>
-           
-            <input style="float:right;" name="#" type="button" class="map_btn" onClick="window.open('<?=$map_url?>','_self')"  />
-           <?php } ?>
-           <?php if($brochure != "") { ?><input name="#" type="button" class="brochure_btn" onClick="window.open('<?=$base_url?>/<?=arg(0)?>/<?=arg(1)?>/<?=arg(2)?>/download/<?=$brochure?>','_self')" /> <?php  } ?>
+			<?php if($brochure != "") { ?>   
+				<div class="btn_div"> 
+			<?php } else { ?> 
+				<div style="padding-right: 45px; margin-top: 30px;"> 
+			<?php } ?>
+			<?php $map_url=$base_url."/".arg(0)."/".arg(1)."/".arg(2)."/map"; ?>
+           	<?php if($brochure != "") {?>
+           		<span class="map_btn btn" onClick="window.open('<?=$map_url?>','_self')" >Map & Directions</span>
+           	<?php } else { ?>
+				<span class="map_btn btn" style="float:right;" onClick="window.open('<?=$map_url?>','_self')" >Map & Directions</span>
+			<?php } ?>
+			<?php if($brochure != "") { ?>
+				<span class="brochure_btn btn" onClick="window.open('<?=$base_url?>/<?=arg(0)?>/<?=arg(1)?>/<?=arg(2)?>/download/<?=$brochure?>','_self')" >Download Brochure</span>
+			<?php  } ?>
             </div>
             <div class="clear"></div>
             <!-- BEGIN : rgallery-->
@@ -1538,44 +1547,70 @@ function exportmasterfile(url){
               <div class="detil_warp">
               <div class="sml_div1">
                 <strong>
-              <?php 
-			  echo nl2br(stripslashes($row_properties->address))."<br /><br />";
-			 // for($k=0;$k<=strlen($row_properties->address);$k=$k+20) { 
-			 // echo stripslashes(substr($row_properties->address, $k, 20))."<br />";
-			//  }
-			  ?>
-              <?php if($row_properties->phone!= "") { ?>    Phone: <?=$row_properties->phone?><br /><?php } ?>
-               <?php if($row_properties->property_url!= "") { 
-			  $rest = substr($row_properties->property_url, 0, 4);
-			  if($rest != "http") { $url= "http://".$row_properties->property_url;} else { $url= $row_properties->property_url; }
-			   ?>   Website: <a target="_blank" href="<?=$url?>"><?=$row_properties->property_url?></a><br /><?php } ?>
-              <?php if($row_properties->fax!= "") { ?>    Fax: <?=$row_properties->fax?><br /> <?php } ?>
-                <a href="mailto:<?=$row_properties->email?>"><?=$row_properties->email?></a></strong>
+				<?php 
+					echo nl2br(stripslashes($row_properties->address))."<br /><br />";
+					// for($k=0;$k<=strlen($row_properties->address);$k=$k+20) { 
+					// echo stripslashes(substr($row_properties->address, $k, 20))."<br />";
+					//  }
+				?>
+            	<?php if($row_properties->phone!= "") { ?>    
+              		<a href="tel:<?=$row_properties->phone?>"><i class="fa fa-phone"></i> <?=$row_properties->phone?></a>
+              		<br />
+              	<?php } ?>
+              	<?php if($row_properties->fax!= "") { ?>    
+              		Fax: <?=$row_properties->fax?>
+              		<br />
+              	<?php } ?>
+
+               	<?php if($row_properties->property_url!= "") { 
+					$rest = substr($row_properties->property_url, 0, 4);
+					if($rest != "http") { 
+						$url = "http://".$row_properties->property_url;
+					} else { 
+						$url = $row_properties->property_url; } ?>
+					<a target="_blank" href="<?=$url?>">
+						Our Website
+					</a>
+					<br />
+				<?php } ?>
+
+            	
+            		<a href="mailto:<?=$row_properties->email?>">Email Us</a>
+            	</strong>
               
-                
               </div>
              
-              <div class="sml_div2 " style="padding-left:172px;">
+              <div class="sml_div2 ">
               <?php $emailing=$base_url."/".arg(0)."/".arg(1)."/".arg(2); ?>
-                <div class="icon_1"><a href="#" class="save_list" title="<?=$row_properties->title?>" >Save This Listing</a></div>
-               <!-- <div class="icon_4"><a href="#" onclick="showpopup('<//?=$emailing?>');">Email This Listing</a></div>-->
-                <div class="icon_4"><a href="<?=$base_url?>/<?=arg(0)?>/<?=arg(1)?>/<?=arg(2)?>/emailing">Email This Listing</a></div>
+                <!-- <div class="icon_1">
+                	<a href="#" class="save_list" title="<?=$row_properties->title?>" >Save This Listing</a>
+            	</div>-->
+               	<!-- <div class="icon_4">
+               		<a href="#" onclick="showpopup('<//?=$emailing?>');">Email This Listing</a>
+               	</div>-->
+                <div class="icon_4">
+                	<a href="<?=$base_url?>/<?=arg(0)?>/<?=arg(1)?>/<?=arg(2)?>/emailing">Email This Listing</a>
+                </div>
                 <br class="clear" />
-                <div class="icon_2"><a href="#" onClick="PrintContent('print_content')">Print This Listing</a></div>
-                <div class="icon_5"><a href="<?=$emailing?>/service_request.html">Service Request</a></div>
+                <div class="icon_2">
+                	<a href="#" onClick="PrintContent('print_content')">Print This Listing</a>
+                </div>
+                <div class="icon_5">
+                	<a href="<?=$emailing?>/service_request.html">Service Request</a>
+                </div>
                 <br class="clear" />
                 
                 <?php if(arg(1) == "residential") { 
 				if($row_properties->facebook != "") {?>
                 <div class="icon_3">
-                <a target="_blank" href="<?=$row_properties->facebook?>">Facebook Page</a>
+                	<a target="_blank" href="<?=$row_properties->facebook?>">Facebook Page</a>
                 </div>
                  <?php } } ?>
                 
                
 				<?php if($row_properties->online != "") { ?>
                 <div class="icon_6"> 
-                <a target="" href="<?=$row_properties->online?>">Apply Online</a>
+                	<a target="" href="<?=$row_properties->online?>">Apply Online</a>
                 </div>
                 <?php } ?>
                 
@@ -1594,7 +1629,7 @@ function exportmasterfile(url){
                
                 
               
-              <?php //if($row_properties->zip != 0) { ?>
+              <?php if($row_properties->zip != 0) { ?>
               <!--<div class="right_btn_div">
                 <div class="weather_box">
                 <a href="#"><img src="< ?='http://www.google.com'.$current[0]->icon['data']?>" width="24" height="19" alt="weather" /></a>
@@ -1606,7 +1641,7 @@ function exportmasterfile(url){
               <?php //} ?>  
               </div>
               </div>-->
-              <?php // } ?>
+              <?php } ?>
               <div class="clear"></div>  
               <?php if($row_properties->title != "") { ?> 
              <!-- <div> 
@@ -1615,8 +1650,10 @@ function exportmasterfile(url){
               </strong>
               </div>  -->
               <?php } ?>
-              <div class="content_desc"><?=stripslashes($row_properties->description)?></div>
-             <?php if(arg(1) == "commercial") { 
+              <div class="content_desc">
+              	<?=stripslashes($row_properties->description)?>
+              </div>
+            	<?php if(arg(1) == "commercial") { 
 			 if($row_properties->leasing_info != "") {
 			 ?> 
 			 <div class="brd">Leasing Information</div>
@@ -1682,7 +1719,6 @@ function exportmasterfile(url){
  ?>
  
  <div id="print_content" style="display:none;" align="">
- <link href="<?=$base_url?>/sites/all/themes/CFH_theme/css/style1.css" rel="stylesheet" type="text/css" />
 
   <div id="middle_container" style="padding-left:120px;">
     <div class="middle_container_inner">

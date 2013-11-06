@@ -83,7 +83,7 @@ body{
 #middle_container {
 	background: none;
 	margin: 0 10px;
-	padding-bottom: 0;
+	padding-bottom: 0 !important;
 }
 #footer_home {
 	background: none;
@@ -191,13 +191,18 @@ body{
 	border-bottom-left-radius: 8px;
 }
 
-
+.btn_div .btn{
+	background:lightgrey;
+	margin:auto;
+	text-align:center;
+}
 
 /* View Property */
 
 .slider_wrapper {
 	width: 100%;
 	margin: 0;
+	padding-top: 15px;
 }
 #left_container{
 	display:none;
@@ -205,6 +210,7 @@ body{
 #right_container_auto {
 	width: auto;
 	float:none;
+	padding: 10px 0;
 }
 .btn_div {
 	width: auto;
@@ -214,37 +220,61 @@ body{
 	padding: 0;
 }
 .residential_content {
-	margin: 10px 12px;
+	margin: 10px 10px;
 }
 .sml_div {
 	width: auto;
 	height: auto;
 	float: none;
 }
+.sml_div2 {
+	width: 100%;
+	padding:0;
+}
 
+.topshadow_effect {
+	display:none;
+}
+#right_container_auto h2 {
+	display:none;
+}
+.nobhill_logo{
+	margin: 0 auto;
+float: none;
+}
+.map_btn,
+.brochure_btn {
+	width:75%;
+	float:none;
+}
+.blue_hdr {
+	font-size: 14px;
+	font-weight: bold;
+}
+.sml_div ul {margin: 0 0 0 5px;}
 
 
 
 /* Footer */
-#footer_home {
+#footer {
 	text-align: left;
 	font: bold 12px Arial, Helvetica, sans-serif;
-	padding:0;
+	padding:0;background: none !important;
+	padding-top: 10px;
 }
 
-#footer_home a,
-#footer_home a:hover {
+#footer_home a, #footer a,
+#footer_home a:hover, #footer a:hover {
 	font-weight: bold !important;
 }
 
-#footer {
-	background: none;
-}
+
 .footer_logo {
 	right: 20px !important;
 	top: 0px !important;
 }
-#footer_home p {
+#footer_home p,
+#footer p {
 	padding: 30px 80px 30px 20px !important;
 }
 
@@ -252,7 +282,7 @@ body{
 	padding: 0;
 	text-align: center;
 	margin-left: -25px;
-	padding: 25px 0 20px;
+	padding: 15px 0 20px;
 }
 
 /* Legal */

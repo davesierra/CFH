@@ -19,13 +19,13 @@ foreach ( $useragents as $useragents ) {
 
 
 
-if ( $ismobile == 1 ) {
-  //echo "<p>mobile device</p>";
+if ( $ismobile ) {
+  echo "<p>Mobile Mode</p>";
   //echo $_SERVER['HTTP_USER_AGENT'];
 
 
 } else {
-  //echo "<p>not mobile</p>";
+  echo "<p>Normal Mode</p>";
   //echo $_SERVER['HTTP_USER_AGENT'];
 
 
