@@ -188,7 +188,7 @@ jQuery(document).ready(function() {
 			<div class="clear"></div>
 		</div>
 	</div>
-	<div id="footer_home" style="position:relative">
+	<div id="footer" class="home">
 			
 		<div class="greenlogofooter">
 			<a href="<?=$base_url?>/green_initiatives.html">

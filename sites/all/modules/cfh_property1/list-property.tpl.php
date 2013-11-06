@@ -103,59 +103,62 @@ drupal_goto($base_url."/property1/list");
 }
 
 if(isset($_POST['delete_img'])) {
-print_r($_POST);
-for($i=1;$i<=$_POST['tot'];$i++) {
-if($_POST['user_'.$i] == "on") {
-$res34=db_query("select image_url from cfh_images where image_id=".$i);
-while($row3=db_fetch_object($res34)) {
-unlink($_SERVER['DOCUMENT_ROOT']."/sites/default/files/imgs/normal/".$row3->image_url);
-unlink($_SERVER['DOCUMENT_ROOT']."/sites/default/files/imgs/thumbs/".$row3->image_url);
-unlink($_SERVER['DOCUMENT_ROOT']."/sites/default/files/imgs/".$row3->image_url);
-}
-$res2=db_query("delete from cfh_images where image_id=".$i);
-$msg="Deleted successfully";
-}
-}
-drupal_set_message($msg);
-drupal_goto($base_url."/property1/list/view_imgs/".arg(3));
-}
+	print_r($_POST);
+	for($i=1;$i<=$_POST['tot'];$i++) {
+		if($_POST['user_'.$i] == "on") {
+			$res34=db_query("select image_url from cfh_images where image_id=".$i);
+			while($row3=db_fetch_object($res34)) {
+				unlink($_SERVER['DOCUMENT_ROOT']."/sites/default/files/imgs/normal/".$row3->image_url);
+				unlink($_SERVER['DOCUMENT_ROOT']."/sites/default/files/imgs/thumbs/".$row3->image_url);
+				unlink($_SERVER['DOCUMENT_ROOT']."/sites/default/files/imgs/".$row3->image_url);
+			}
 
+			$res2=db_query("delete from cfh_images where image_id=".$i);
+			$msg="Deleted successfully";
+		}
+	}
+	drupal_set_message($msg);
+	drupal_goto($base_url."/property1/list/view_imgs/".arg(3));
+}
+if(isset($_POST['upload_img'])) {
+	print_r($_POST);
+}
 
 
 if((arg(2)=="delete") && (arg(3)!="")) {
-$re1=db_query("delete from cfh_property where pid=".arg(3));
-$res34=db_query("select image_url from cfh_images where pid=".arg(3));
-while($row3=db_fetch_object($res34)) {
-unlink($_SERVER['DOCUMENT_ROOT']."/sites/default/files/imgs/normal/".$row3->image_url);
-unlink($_SERVER['DOCUMENT_ROOT']."/sites/default/files/imgs/thumbs/".$row3->image_url);
-unlink($_SERVER['DOCUMENT_ROOT']."/sites/default/files/imgs/".$row3->image_url);
-}
-$res2=db_query("delete from cfh_images where pid=".arg(3));
-$msg="Deleted successfully";
-drupal_set_message($msg);
-drupal_goto($base_url."/property1/list");
+	$re1=db_query("delete from cfh_property where pid=".arg(3));
+	$res34=db_query("select image_url from cfh_images where pid=".arg(3));
+	while($row3=db_fetch_object($res34)) {
+	unlink($_SERVER['DOCUMENT_ROOT']."/sites/default/files/imgs/normal/".$row3->image_url);
+	unlink($_SERVER['DOCUMENT_ROOT']."/sites/default/files/imgs/thumbs/".$row3->image_url);
+	unlink($_SERVER['DOCUMENT_ROOT']."/sites/default/files/imgs/".$row3->image_url);
+	}
+	$res2=db_query("delete from cfh_images where pid=".arg(3));
+	$msg="Deleted successfully";
+	drupal_set_message($msg);
+	drupal_goto($base_url."/property1/list");
 }
 if((arg(4)=="delete") && (arg(5)!="")) {
 
-$res34=db_query("select image_url from cfh_images where image_id=".arg(5));
-while($row3=db_fetch_object($res34)) {
-unlink($_SERVER['DOCUMENT_ROOT']."/sites/default/files/imgs/normal/".$row3->image_url);
-unlink($_SERVER['DOCUMENT_ROOT']."/sites/default/files/imgs/thumbs/".$row3->image_url);
-unlink($_SERVER['DOCUMENT_ROOT']."/sites/default/files/imgs/".$row3->image_url);
-}
-$res2=db_query("delete from cfh_images where image_id=".arg(5));
-$msg="Deleted successfully";
-drupal_set_message($msg);
-drupal_goto($base_url."/property1/list/view_imgs/".arg(3));
+	$res34=db_query("select image_url from cfh_images where image_id=".arg(5));
+	while($row3=db_fetch_object($res34)) {
+	unlink($_SERVER['DOCUMENT_ROOT']."/sites/default/files/imgs/normal/".$row3->image_url);
+	unlink($_SERVER['DOCUMENT_ROOT']."/sites/default/files/imgs/thumbs/".$row3->image_url);
+	unlink($_SERVER['DOCUMENT_ROOT']."/sites/default/files/imgs/".$row3->image_url);
+	}
+	$res2=db_query("delete from cfh_images where image_id=".arg(5));
+	$msg="Deleted successfully";
+	drupal_set_message($msg);
+	drupal_goto($base_url."/property1/list/view_imgs/".arg(3));
 
 
 }
 if((arg(4)=="main") && (arg(5)!="")) {
-$res34=db_query("update cfh_images set main='0' where pid=".arg(3));
-$res34=db_query("update cfh_images set main='1' where image_id=".arg(5));
-$msg="Set album cover successfully";
-drupal_set_message($msg);
-drupal_goto($base_url."/property1/list/view_imgs/".arg(3));
+	$res34=db_query("update cfh_images set main='0' where pid=".arg(3));
+	$res34=db_query("update cfh_images set main='1' where image_id=".arg(5));
+	$msg="Set album cover successfully";
+	drupal_set_message($msg);
+	drupal_goto($base_url."/property1/list/view_imgs/".arg(3));
 
 
 }
@@ -268,7 +271,7 @@ while($row=db_fetch_object($query1)) {
 								  $classname="row2_bg";
 								  }
 $title=db_result(db_query("select title from cfh_property where pid=".arg(3)));
-$maxpid=db_result(db_query("select max(ci.image_id) from cfh_images as ci where ci.pid='".arg(3)."' order by ci.order"));
+$maxpid=db_result(db_query("select max(ci.image_id) from cfh_images as ci where ci.pid='".arg(3)."' order by ci.order ASC"));
 ?>
 <li id="arrayorder_<?=$row->image_id?>"  class="<?=$classname?>" style="width:921px; height:62px; margin-left:-6px;">
 <div style="width:10%; float:left;margin-left:-2px;"><input type='checkbox' name='user_<?=$row->image_id?>' id='user_<?=$row->image_id?>' /></div><div style="margin-left:-23px;width:10%; float:left"><?=$title?></div>
@@ -289,7 +292,21 @@ $i=$i+1;
 </td></tr>
 <input type="hidden" name="tot" value="<?php print $maxpid; ?>" />
 <?php if($cnt!=0) { ?>
-<td colspan="8"><input type="submit" id="send" name="delete_img" value="Delete" onclick="return validate()" /></td>
+<td colspan="4">
+	<input type="submit" class="send" name="delete_img" value="Delete" onclick="return validate()" />
+</td>
+
+<td colspan="4">
+	
+	<div id="mUpload">
+		Upload images:
+		<input class="upload" name="fileX[]" type="file" id="fileX" onchange="do1();" />
+		<input style="display: none;" class="upload" name="fileX[]" type="file" />
+		<input style="display: none;" id="element_input" class="upload" name="fileX[]" type="file" />
+	</div>
+	<input type="submit" class="send" name="upload_img" value="Upload" onclick="return validate()" />
+</td>
+
 <?php } ?>
 </table>
 </form>

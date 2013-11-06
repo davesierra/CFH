@@ -1,17 +1,20 @@
 <?php
 global $base_url;
+include('mobile-detection.php');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>CFH</title>
 <link href="<?=$base_url?>/sites/all/themes/CFH_theme/css/style1.css" rel="stylesheet" type="text/css" />
 <link href="<?=$base_url?>/sites/all/themes/CFH_theme/css/chromestyle.css" rel="stylesheet" type="text/css"/>
 
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,800,700' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Lato:400,700,900' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="<?=$base_url?>/sites/all/themes/CFH_theme/css/mobile.css" media="handheld, only screen and (max-width:480px)"/>
+
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.2/css/font-awesome.css" rel="stylesheet">
 
 <script src="<?=$base_url?>/sites/all/themes/CFH_theme/js/chrome.js" type="text/javascript"></script>
 <!--[if IE 6]>
@@ -20,154 +23,31 @@ global $base_url;
       DD_belatedPNG.fix('img,div,h1,a,li,.slider li');
 </SCRIPT>
 <![endif]-->
+
 <!--
   jQuery library
 -->
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-<!--
-  jCarousel library
--->
-<script type="text/javascript" src="<?=$base_url?>/sites/all/themes/CFH_theme/js/jquery.jcarousel.min.js"></script>
-<!--
-  jCarousel skin stylesheet
--->
-<link rel="stylesheet" type="text/css" href="<?=$base_url?>/sites/all/themes/CFH_theme/css/skin.css" />
-<script type="text/javascript" src="<?=$base_url?>/sites/all/themes/CFH_theme/js/smoothscroll.js"></script>
-
-<?php if(arg(0) == "view_property") { ?>
-  <!-- 
-  FlexSlider for the View Property pages
-  -->
-
-  <link rel="stylesheet" href="<?=$base_url?>/sites/all/modules/view_property/js1/flexslider/flexslider.css" type="text/css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-  <script type="text/javascript">
-    // Set a new variable for a noconflict between the original jQ library and the newer one needed for slider
-    var $j = jQuery.noConflict(true);
-  </script>
-  <script type="text/javascript" src="<?=$base_url?>/sites/all/modules/view_property/js1/fancybox/source/jquery.fancybox.js?v=2.1.5"></script>
-  <link rel="stylesheet" type="text/css" href="<?=$base_url?>/sites/all/modules/view_property/js1/fancybox/source/jquery.fancybox.css?v=2.1.5" media="screen" />
-  <script src="<?=$base_url?>/sites/all/modules/view_property/js1/flexslider/jquery.flexslider.js"></script>
-  
-  <!-- Load FancyBox Helper for custom buttons -->
-  <script src="<?=$base_url?>/sites/all/modules/view_property/js1/fancybox/source/helpers/jquery.fancybox-buttons.js"></script>
-  <link href="<?=$base_url?>/sites/all/modules/view_property/js1/fancybox/source/helpers/jquery.fancybox-buttons.css" rel="stylesheet" type="text/css" media="screen" />
-  
-  <script type="text/javascript" charset="utf-8">
-    function addLinks() {
-        var list = $("#fancy_bullets");
-        
-        if (!list.length) {    
-            list = $('<ul id="fancy_bullets">');
-        
-            for (var i = 0; i < this.group.length; i++) {
-                $('<li data-index="' + i + '"><label></label></li>').click(function() { 
-                  alert($(this).data('index'));
-                  $.fancybox.jumpto( $(this).data('index'));}).appendTo( list );
-            }
-            
-            list.appendTo( 'body' );
-        }
-
-        list.find('li').removeClass('active').eq( this.index ).addClass('active');
-    }
-
-    function removeLinks() {
-        $("#fancy_bullets").remove();    
-    }
-
-    $(document).ready(function($j){
-      console.log($j().jquery);
-       //$j('.elastislide-list').elastislide();
-      $j(".fancybox").fancybox({
-        padding     : 0,
-        closeBtn    : false,
-        autoSize    : 'false',
-        margin      : [20, 60, 20, 60], // Increase left/right margin
-        afterLoad   : addLinks,
-        beforeClose : removeLinks,
-        wrapCSS     : 'cfh-fancy-wrap',
-        helpers     : {
-              title   : { type : 'inside' },
-              buttons : {}
-        }
-        // tpl         : 
-        //   {
-        //     wrap     : '<div class="fancybox-wrapper" tabIndex="-1"><div class="fancybox-skin"><div class="fancybox-outer"><div class="fancybox-inner"><div class="fancybox-wrap"></div></div></div></div></div>',
-        //     image    : '<img class="fancybox-image" src="{href}" alt="" />',
-        //     closeBtn : '<a title="Close" class="fancybox-item fancybox-close" href="javascript:;"></a>',
-        //     next     : '<a title="Next" class="fancybox-nav fancybox-next" href="javascript:;"><span></span></a>',
-        //     prev     : '<a title="Previous" class="fancybox-nav fancybox-prev" href="javascript:;"><span></span></a>'
-        //   }
-      });
-
-      $j('#slider').flexslider({
-        animation: "slide",
-        controlNav: false,
-        animationLoop: false,
-        slideshow: false,
-        sync: "#carous3l"
-      });
-      $j('#carousel').flexslider({
-        animation: "slide",
-        controlNav: false,
-        animationLoop: false,
-        slideshow: false,
-        itemWidth: 75,
-        itemMargin: 5,
-        asNavFor: '#slider'
-      });
-      
-    });
-  </script>
-<?php } ?>
 
 
-<?php
-if(arg(2) == "") {
- ?>
+<?php if(arg(0) == "view_property") { 
+  include('view-property-modules.php');
+} ?>
 
-<script type="text/javascript">
-
-function mycarousel_initCallback(carousel)
-{
-    // Disable autoscrolling if the user clicks the prev or next button.
-    carousel.buttonNext.bind('click', function() {
-        carousel.startAuto(0);
-    });
-
-    carousel.buttonPrev.bind('click', function() {
-        carousel.startAuto(0);
-    });
-
-    // Pause autoscrolling if the user moves with the cursor over the clip.
-    carousel.clip.hover(function() {
-        carousel.stopAuto();
-    }, function() {
-        carousel.startAuto();
-    });
-};
-
-jQuery(document).ready(function() {
-    jQuery('#mycarousel').jcarousel({
-        auto: 3,
-        wrap: 'last',
-        initCallback: mycarousel_initCallback
-    });
-});
-
-</script>
-<?php
-}
-?>
 </head>
 <body>
 <div id="outer_main">
   <div id="header">
+    <?php if($ismobile){ ?>
+    <div class="mobile header-links">
+      <a href="#" class="mobile nav"></a>
+      <a href="#" class="mobile search"></a>
+    </div>
+    <?php } ?>
     <div id="logo">
       <h1><a href="<?=$base_url?>">CFH</a></h1>
     </div>
+
     <!-- END : Logo-->
     <!-- BEGIN : Search-->
     <div id="search_area">
@@ -416,14 +296,14 @@ jQuery(document).ready(function() {
     </div>
     </div>
 
-  <div id="footer_services" style="position:relative">
+  <div id="footer" class="services">
  <?php } 
   else if(arg(1) == 7) {  
    ?>
  <div class="clear"></div>
  </div>
     </div>
- <div id="footer_paramount" style="position:relative">
+ <div id="footer" class="paramount">
  <?php } 
  else if(arg(1) == 6) {  
    ?>
@@ -503,12 +383,35 @@ jQuery(document).ready(function() {
   <div class="clear"></div>
   <div id="footer_home" style="position:relative">
  <?php } ?>
-    <p style="padding:38px 39px 5px 0;"><a href="<?=$base_url?>/company_overview.html" >Company Overview</a> | <a href="<?=$base_url?>/services.html" >Services</a> | <a href="<?=$base_url?>/view_property/commercial">Properties</a> | <a href="<?=$base_url?>/career.html" >Careers</a> <!--| <a href="#">Investors</a> -->| <a href="<?=$base_url?>/contactus.html">Contact</a> <!-- | <a href="<?=$base_url?>/privacy.html">Privacy Policy</a>--></p>
-    <p style="padding:0px 39px 5px 0;">© 2010 CFH Group   | <a href="<?=$base_url?>/terms_of_use.html">Terms and Conditions</a> | <a href="<?=$base_url?>/privacy.html">Privacy Policy</a><div class="footer_logo"></div></p>
-    <!-- BEGIN : Footer container-->
+    <div class="legal_info">
+      © 2010 CFH Group &nbsp;
+      <a href="<?=$base_url?>/terms_of_use.html" class="m-show">Terms and Conditions</a>  
+      <a href="<?=$base_url?>/privacy.html" class="m-show">Privacy Policy</a>  
+      <a href="<?=$base_url?>/company_overview.html" >Company Overview</a>  
+      <a href="<?=$base_url?>/services.html" >Services</a>  
+      <a href="<?=$base_url?>/view_property/commercial">Properties</a>  
+      <a href="<?=$base_url?>/career.html" >Careers</a>  
+      <a href="<?=$base_url?>/contactus.html">Contact</a>
+      <div class="footer_logo"></div>
+    </div>
   </div>
 </div>
 </div>
 <!-- END : Outer Main-->
+
+<?php if($ismobile){ ?>
+<script>
+
+$j('a.mobile.nav').click(function(){
+  $('#menu_container').slideToggle();
+});
+
+$j('a.mobile.search').click(function(){
+  $('#search_area').slideToggle();
+});
+
+</script>
+<?php } ?>
+
 </body>
 </html>
