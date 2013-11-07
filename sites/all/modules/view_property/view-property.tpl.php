@@ -1458,14 +1458,19 @@ function exportmasterfile(url){
 	   $brochure_url=$base_url."/sites/default/files/brochure/".$brochure;
 	   $logo_url=$base_url."/sites/default/files/imgs/logo/".$url; 
 	   list($width, $height, $type, $attr) = getimagesize($logo_url);
-	   ?> <h2 align="center" style="font-size:15px;"><?php
-       if($sent != "") { print "<script language='javascript'>showpopup('Thanks');</script>"; }
-	   ?></h2>
+	   ?> 
+
+	   	<!--<h2 align="center" style="font-size:15px;">
+	   	<?php if($sent != "") { print "<script language='javascript'>showpopup('Thanks');</script>"; } ?>
+		</h2> -->
+
            <?php if(arg(1) != "commercial") { ?>  
-           <div class="nobhill_logo" style="background:url('<?=$logo_url?>') center center no-repeat;"></div> <?php } else {
+           <div class="nobhill_logo" style="background:url('<?=$logo_url?>') center center no-repeat; background-size:100%;"></div> 
+           <?php } else {
 		   $head=db_result(db_query("select title from cfh_property where pid=".arg(2)));
 		   $head_desc = db_result(db_query("select header_section from cfh_property where pid=".arg(2)));
-		   ?>
+		     
+			?>
         	<div>
 				<p style="color:#0363A8;float:left; font-size:22px; margin:20px 37px 15px;"><?=$head?></p>
 			</div>
@@ -1478,15 +1483,70 @@ function exportmasterfile(url){
 			<?php } ?>
 			<?php $map_url=$base_url."/".arg(0)."/".arg(1)."/".arg(2)."/map"; ?>
            	<?php if($brochure != "") {?>
-           		<span class="map_btn btn" onClick="window.open('<?=$map_url?>','_self')" >Map & Directions</span>
+           		<a class="map_btn btn" href="<?=$map_url?>" >
+           			<i class="fa fa-phone"></i>
+           			<span>Map & Directions</span></a>
            	<?php } else { ?>
-				<span class="map_btn btn" style="float:right;" onClick="window.open('<?=$map_url?>','_self')" >Map & Directions</span>
+				<a class="map_btn btn" style="float:right;" href="<?=$map_url?>" >
+					<i class="fa fa-phone"></i>
+					<span>Map & Directions</span></a>
 			<?php } ?>
 			<?php if($brochure != "") { ?>
-				<span class="brochure_btn btn" onClick="window.open('<?=$base_url?>/<?=arg(0)?>/<?=arg(1)?>/<?=arg(2)?>/download/<?=$brochure?>','_self')" >Download Brochure</span>
+				<?php 
+				$properties=db_query("select * from cfh_property where pid=".arg(2));
+		  		while($row_properties=db_fetch_object($properties)) { ?>
+
+				<?php //show website link
+					if($row_properties->property_url!= "") { 
+					$rest = substr($row_properties->property_url, 0, 4);
+					if($rest != "http") { 
+						$url = "http://".$row_properties->property_url;
+					} else { 
+						$url = $row_properties->property_url; } ?>
+					<a class="website_btn btn" target="_blank" href="<?=$url?>">
+						<i class="fa fa-link"></i>
+						<span>Our Website</span>
+					</a>
+					<br />
+					<a class="email_btn btn" href="mailto:<?=$row_properties->email?>">
+						<i class="fa fa-envelope"></i>
+						<span>Email Us</span></a>
+					<?php } ?>
+				<?php } ?>
+				<a class="brochure_btn btn" href="<?=$base_url?>/<?=arg(0)?>/<?=arg(1)?>/<?=arg(2)?>/download/<?=$brochure?>">
+					<i class="fa fa-file-text"></i>
+					<span>Download Brochure</span>
+				</a>
 			<?php  } ?>
             </div>
             <div class="clear"></div>
+            <?php
+            	$properties=db_query("select * from cfh_property where pid=".arg(2));
+		  		while($row_properties=db_fetch_object($properties)) {?>
+            <div class="info">
+            	<div class="address">
+            	<?php
+					//echo nl2br(stripslashes($row_properties->address));
+					//echo stripslashes($row_properties->address);
+					echo str_replace ("\n", "- ", stripslashes($row_properties->address));
+					
+				?>
+				
+				</div>
+				<div class="phone">
+					<?php if($row_properties->phone!= "") { ?> 
+						<i class="fa fa-phone fa-lg"></i>   
+	              		<a href="tel:<?=$row_properties->phone?>"><?=$row_properties->phone?></a>
+	              	<?php } ?>
+	              	&nbsp;<i class="fa fa-asterisk"></i>&nbsp;
+	              	<?php if($row_properties->fax!= "") { ?>    
+              			Fax: <?=$row_properties->fax?>
+              	<?php } ?>
+				</div>
+				<div class="clear"></div>
+            </div>
+            <?php } ?>
+            
             <!-- BEGIN : rgallery-->
             <div class="residential_content">
 
@@ -1545,76 +1605,6 @@ function exportmasterfile(url){
 			  ?> 
               <div class="clear"></div>
               <div class="detil_warp">
-              <div class="sml_div1">
-                <strong>
-				<?php 
-					echo nl2br(stripslashes($row_properties->address))."<br /><br />";
-					// for($k=0;$k<=strlen($row_properties->address);$k=$k+20) { 
-					// echo stripslashes(substr($row_properties->address, $k, 20))."<br />";
-					//  }
-				?>
-            	<?php if($row_properties->phone!= "") { ?>    
-              		<a href="tel:<?=$row_properties->phone?>"><i class="fa fa-phone"></i> <?=$row_properties->phone?></a>
-              		<br />
-              	<?php } ?>
-              	<?php if($row_properties->fax!= "") { ?>    
-              		Fax: <?=$row_properties->fax?>
-              		<br />
-              	<?php } ?>
-
-               	<?php if($row_properties->property_url!= "") { 
-					$rest = substr($row_properties->property_url, 0, 4);
-					if($rest != "http") { 
-						$url = "http://".$row_properties->property_url;
-					} else { 
-						$url = $row_properties->property_url; } ?>
-					<a target="_blank" href="<?=$url?>">
-						Our Website
-					</a>
-					<br />
-				<?php } ?>
-
-            	
-            		<a href="mailto:<?=$row_properties->email?>">Email Us</a>
-            	</strong>
-              
-              </div>
-             
-              <div class="sml_div2 ">
-              <?php $emailing=$base_url."/".arg(0)."/".arg(1)."/".arg(2); ?>
-                <!-- <div class="icon_1">
-                	<a href="#" class="save_list" title="<?=$row_properties->title?>" >Save This Listing</a>
-            	</div>-->
-               	<!-- <div class="icon_4">
-               		<a href="#" onclick="showpopup('<//?=$emailing?>');">Email This Listing</a>
-               	</div>-->
-                <div class="icon_4">
-                	<a href="<?=$base_url?>/<?=arg(0)?>/<?=arg(1)?>/<?=arg(2)?>/emailing">Email This Listing</a>
-                </div>
-                <br class="clear" />
-                <div class="icon_2">
-                	<a href="#" onClick="PrintContent('print_content')">Print This Listing</a>
-                </div>
-                <div class="icon_5">
-                	<a href="<?=$emailing?>/service_request.html">Service Request</a>
-                </div>
-                <br class="clear" />
-                
-                <?php if(arg(1) == "residential") { 
-				if($row_properties->facebook != "") {?>
-                <div class="icon_3">
-                	<a target="_blank" href="<?=$row_properties->facebook?>">Facebook Page</a>
-                </div>
-                 <?php } } ?>
-                
-               
-				<?php if($row_properties->online != "") { ?>
-                <div class="icon_6"> 
-                	<a target="" href="<?=$row_properties->online?>">Apply Online</a>
-                </div>
-                <?php } ?>
-                
-                </div>
                
               
               <?php
@@ -1651,6 +1641,7 @@ function exportmasterfile(url){
               </div>  -->
               <?php } ?>
               <div class="content_desc">
+              	<div class="brd">Description</div>
               	<?=stripslashes($row_properties->description)?>
               </div>
             	<?php if(arg(1) == "commercial") { 
@@ -1658,7 +1649,9 @@ function exportmasterfile(url){
 			 ?> 
 			 <div class="brd">Leasing Information</div>
 			 <div class="clear"></div>
-             <div class="content_desc"><?=stripslashes($row_properties->leasing_info)?></div>
+             <div class="content_desc">
+             	<?=stripslashes($row_properties->leasing_info)?>
+             </div>
 			 <?php }} ?>             
 			 
 			 <?php 
